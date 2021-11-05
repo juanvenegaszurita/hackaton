@@ -1,64 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+import 'package:hackaton/controller/controllers.dart';
+import 'package:hackaton/constants/constants.dart';
+import 'package:hackaton/ui/ui.dart';
+import 'package:hackaton/helpers/helpers.dart';
+
+void main() async {
+  await Firebase.initializeApp();
+  await GetStorage.init();
+
+  Get.put<AuthController>(AuthController());
+  Get.put<ThemeController>(ThemeController());
+  Get.put<LanguageController>(LanguageController());
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+    ThemeController.to.getThemeModeFromStore();
+    return GetBuilder<LanguageController>(
+      builder: (languageController) => Loading(
+        child: GetMaterialApp(
+          translations: Localization(),
+          locale: languageController.getLocale, // <- Current locale
+          navigatorObservers: [
+            // FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
           ],
+          debugShowCheckedModeBanner: false,
+          //defaultTransition: Transition.fade,
+          theme: AppThemes.light,
+          darkTheme: AppThemes.dark,
+          themeMode: ThemeMode.system,
+          initialRoute: "/",
+          getPages: AppRoutes.routes,
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ),
     );
   }
