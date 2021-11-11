@@ -4,6 +4,7 @@ class Localization extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'es': {
+          /** login */
           'login.signInButton': 'Iniciar sesión',
           'login.signUpButton': 'Inscribirse',
           'login.resetPasswordButton': 'Enviar restablecimiento de contraseña',
@@ -43,8 +44,30 @@ class Localization extends Translations {
           'login.wrongPasswordNotice':
               'La contraseña no coincide con nuestros registros.',
           'login.unknownError': 'Error desconocido',
+          /** validator */
+          'validator.email':
+              'Por favor, introduce una dirección de correo electrónico válida.',
+          'validator.password':
+              'La contraseña debe tener al menos 6 caracteres.',
+          'validator.name': 'Por favor ingrese un nombre.',
+          'validator.number': 'Por favor, introduzca un número.',
+          'validator.notEmpty': 'Este es un campo obligatorio.',
+          'validator.amount':
+              'Por favor ingrese un número I.E. 250 - Sin símbolo de dólar y sin centavos',
+          /** settings */
+          'settings.title': 'Ajustes',
+          'settings.language': 'Idioma',
+          'settings.theme': 'Tema',
+          'settings.signOut': 'Desconectar',
+          'settings.dark': 'Oscuro',
+          'settings.light': 'Luz',
+          'settings.system': 'Sistema',
+          'settings.updateProfile': 'Actualización del perfil',
+          /** home */
+          'home.title': 'Inicio',
         },
         'en': {
+          /** login */
           'login.signInButton': 'Log in',
           'login.signUpButton': 'Register',
           'login.resetPasswordButton': 'Send reset password',
@@ -80,6 +103,25 @@ class Localization extends Translations {
           'login.wrongPasswordNoticeTitle': 'Login error',
           'login.wrongPasswordNotice':
               'The password does not match our records.',
+          /** validator */
+          'validator.email': 'Please enter a valid email address.',
+          'validator.password': 'The password must be at least 6 characters.',
+          'validator.name': 'Please enter a name.',
+          'validator.number': 'Please enter a number.',
+          'validator.notEmpty': 'This is a mandatory field.',
+          'validator.amount':
+              'Please enter a number i.e. 250 - No symbol of dollar and without cents',
+          /** settings */
+          'settings.title': 'Settings',
+          'settings.language': 'Idiom',
+          'settings.theme': 'Theme',
+          'settings.signOut': 'Disconnect',
+          'settings.dark': 'Dark',
+          'settings.light': 'Light',
+          'settings.system': 'System',
+          'settings.updateProfile': 'Profile update',
+          /** home */
+          'home.title': 'Home',
         },
       };
 }

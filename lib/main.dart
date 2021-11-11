@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-import 'package:hackaton/controller/controllers.dart';
+import 'package:hackaton/controllers/controllers.dart';
 import 'package:hackaton/constants/constants.dart';
 import 'package:hackaton/ui/ui.dart';
 import 'package:hackaton/helpers/helpers.dart';

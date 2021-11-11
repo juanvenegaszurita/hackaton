@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hackaton/controller/controllers.dart';
+import 'package:hackaton/controllers/controllers.dart';
 
 class LogoGraphicHeader extends StatelessWidget {
   LogoGraphicHeader();

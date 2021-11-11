@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:hackaton/constants/globals.dart';
-import 'package:hackaton/controllers/auth_controller.dart';
-import 'package:hackaton/controllers/language_controller.dart';
-import 'package:hackaton/helpers/validator.dart';
 import 'package:hackaton/ui/components/components.dart';
-import 'package:hackaton/ui/public/reset_password_ui.dart';
-import 'package:hackaton/ui/public/sign_up_ui.dart';
+import 'package:hackaton/helpers/helpers.dart';
+import 'package:hackaton/controllers/controllers.dart';
+import 'package:hackaton/ui/public/login_ui.dart';
 
-class LoginUi extends GetResponsiveView {
+class SignUpUI extends GetResponsiveView {
   final AuthController authController = AuthController.to;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -29,6 +27,16 @@ class LoginUi extends GetResponsiveView {
                 children: <Widget>[
                   LogoGraphicHeader(),
                   SizedBox(height: 48.0),
+                  FormInputFieldWithIcon(
+                    controller: authController.nameController,
+                    iconPrefix: Icons.person,
+                    labelText: 'login.nameFormField'.tr,
+                    validator: Validator().name,
+                    onChanged: (value) => null,
+                    onSaved: (value) =>
+                        authController.nameController.text = value!,
+                  ),
+                  FormVerticalSpace(),
                   FormInputFieldWithIcon(
                     controller: authController.emailController,
                     iconPrefix: Icons.email,
@@ -53,41 +61,23 @@ class LoginUi extends GetResponsiveView {
                   ),
                   FormVerticalSpace(),
                   PrimaryButton(
-                      labelText: 'login.signInButton'.tr,
+                      labelText: 'login.signUpButton'.tr,
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          authController.signInWithEmailAndPassword(context);
+                          SystemChannels.textInput.invokeMethod(
+                              'TextInput.hide'); //to hide the keyboard - if any
+                          authController.registerWithEmailAndPassword(context);
                         }
                       }),
                   FormVerticalSpace(),
                   LabelButton(
-                    labelText: 'login.resetPasswordLabelButton'.tr,
-                    onPressed: () => Get.to(ResetPasswordUI()),
+                    labelText: 'login.signInLabelButton'.tr,
+                    onPressed: () => Get.to(LoginUi()),
                   ),
-                  LabelButton(
-                    labelText: 'login.signUpLabelButton'.tr,
-                    onPressed: () => Get.to(SignUpUI()),
-                  ),
-                  languageListTile(context),
                 ],
               ),
             ),
           ),
-        ),
-      ),
-    );
-  }
-
-  languageListTile(BuildContext context) {
-    return GetBuilder<LanguageController>(
-      builder: (controller) => Center(
-        child: DropdownPicker(
-          menuOptions: Globals.languageOptions,
-          selectedOption: controller.currentLanguage,
-          onChanged: (value) async {
-            await controller.updateLanguage(value!);
-            Get.forceAppUpdate();
-          },
         ),
       ),
     );

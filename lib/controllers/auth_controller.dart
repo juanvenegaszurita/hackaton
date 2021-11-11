@@ -58,7 +58,7 @@ class AuthController extends GetxController {
       print('Send to signin');
       Get.offAll(LoginUi());
     } else {
-      Get.offAll(HomeUi());
+      Get.offAll(HomeUI());
     }
   }
 
@@ -101,7 +101,7 @@ class AuthController extends GetxController {
       hideLoadingIndicator();
     } catch (error) {
       hideLoadingIndicator();
-      Get.snackbar('auth.signInErrorTitle'.tr, 'auth.signInError'.tr,
+      Get.snackbar('login.signInErrorTitle'.tr, 'login.signInError'.tr,
           snackPosition: SnackPosition.BOTTOM,
           duration: Duration(seconds: 7),
           backgroundColor: Get.theme.snackBarTheme.backgroundColor,
@@ -142,7 +142,7 @@ class AuthController extends GetxController {
       });
     } on FirebaseAuthException catch (error) {
       hideLoadingIndicator();
-      Get.snackbar('auth.signUpErrorTitle'.tr, error.message!,
+      Get.snackbar('login.signUpErrorTitle'.tr, error.message!,
           snackPosition: SnackPosition.BOTTOM,
           duration: Duration(seconds: 10),
           backgroundColor: Get.theme.snackBarTheme.backgroundColor,
@@ -153,8 +153,8 @@ class AuthController extends GetxController {
   //handles updating the user when updating profile
   Future<void> updateUser(BuildContext context, UserModel user, String oldEmail,
       String password) async {
-    String _authUpdateUserNoticeTitle = 'auth.updateUserSuccessNoticeTitle'.tr;
-    String _authUpdateUserNotice = 'auth.updateUserSuccessNotice'.tr;
+    String _authUpdateUserNoticeTitle = 'login.updateUserSuccessNoticeTitle'.tr;
+    String _authUpdateUserNotice = 'login.updateUserSuccessNotice'.tr;
     try {
       showLoadingIndicator();
       try {
@@ -170,11 +170,11 @@ class AuthController extends GetxController {
         //not yet working, see this issue https://github.com/delay/personal/issues/21
         if (err ==
             "Error: [firebase_auth/email-already-in-use] The email address is already in use by another account.") {
-          _authUpdateUserNoticeTitle = 'auth.updateUserEmailInUse'.tr;
-          _authUpdateUserNotice = 'auth.updateUserEmailInUse'.tr;
+          _authUpdateUserNoticeTitle = 'login.updateUserEmailInUse'.tr;
+          _authUpdateUserNotice = 'login.updateUserEmailInUse'.tr;
         } else {
-          _authUpdateUserNoticeTitle = 'auth.wrongPasswordNotice'.tr;
-          _authUpdateUserNotice = 'auth.wrongPasswordNotice'.tr;
+          _authUpdateUserNoticeTitle = 'login.wrongPasswordNotice'.tr;
+          _authUpdateUserNotice = 'login.wrongPasswordNotice'.tr;
         }
       }
       hideLoadingIndicator();
@@ -191,13 +191,13 @@ class AuthController extends GetxController {
       String authError;
       switch (error.code) {
         case 'ERROR_WRONG_PASSWORD':
-          authError = 'auth.wrongPasswordNotice'.tr;
+          authError = 'login.wrongPasswordNotice'.tr;
           break;
         default:
-          authError = 'auth.unknownError'.tr;
+          authError = 'login.unknownError'.tr;
           break;
       }
-      Get.snackbar('auth.wrongPasswordNoticeTitle'.tr, authError,
+      Get.snackbar('login.wrongPasswordNoticeTitle'.tr, authError,
           snackPosition: SnackPosition.BOTTOM,
           duration: Duration(seconds: 10),
           backgroundColor: Get.theme.snackBarTheme.backgroundColor,
@@ -224,14 +224,14 @@ class AuthController extends GetxController {
       await _auth.sendPasswordResetEmail(email: emailController.text);
       hideLoadingIndicator();
       Get.snackbar(
-          'auth.resetPasswordNoticeTitle'.tr, 'auth.resetPasswordNotice'.tr,
+          'login.resetPasswordNoticeTitle'.tr, 'login.resetPasswordNotice'.tr,
           snackPosition: SnackPosition.BOTTOM,
           duration: Duration(seconds: 5),
           backgroundColor: Get.theme.snackBarTheme.backgroundColor,
           colorText: Get.theme.snackBarTheme.actionTextColor);
     } on FirebaseAuthException catch (error) {
       hideLoadingIndicator();
-      Get.snackbar('auth.resetPasswordFailed'.tr, error.message!,
+      Get.snackbar('login.resetPasswordFailed'.tr, error.message!,
           snackPosition: SnackPosition.BOTTOM,
           duration: Duration(seconds: 10),
           backgroundColor: Get.theme.snackBarTheme.backgroundColor,

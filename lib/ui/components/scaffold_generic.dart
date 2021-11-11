@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hackaton/ui/components/menu.dart';
 
 class ScaffoldGeneric extends GetResponsiveView {
   ScaffoldGeneric({
@@ -12,6 +13,8 @@ class ScaffoldGeneric extends GetResponsiveView {
     this.colorTitle,
     this.alignmentTitle = Alignment.center,
     this.elevationTitle = 4.0,
+    this.isMenu = true,
+    this.isAppBarActions = true,
   });
   final String title;
   final Widget body;
@@ -22,26 +25,30 @@ class ScaffoldGeneric extends GetResponsiveView {
   final Color? colorTitle;
   final AlignmentGeometry alignmentTitle;
   final double elevationTitle;
+  final bool isMenu;
+  final bool isAppBarActions;
 
   @override
   Widget builder() {
     double width = screen.isDesktop ? maxWidth : screen.width;
     return Scaffold(
+      drawer: isMenu ? Menu() : null,
       backgroundColor: backgroundColor != null
           ? backgroundColor
           //: ThemeController().getThemeModeFromString().scaffoldBackgroundColor,
           : ThemeData().scaffoldBackgroundColor,
       appBar: AppBar(
-        actions: [
-          IconButton(
-            icon: Icon(Icons.brightness_5),
-            onPressed: () {
-              //ThemeController().switchTheme();
-              Get.forceAppUpdate();
-            },
-            tooltip: "Día/Noche",
-          ),
-        ],
+        actions: isAppBarActions
+            ? [
+                IconButton(
+                  icon: Icon(Icons.settings),
+                  onPressed: () {
+                    /* Get.to(page) */
+                  },
+                  tooltip: 'settings.title'.tr,
+                ),
+              ]
+            : [],
         backgroundColor: backgroundColorAppBar != null
             ? backgroundColorAppBar
             //: ThemeService().themeData.appBarTheme.backgroundColor,
@@ -57,7 +64,7 @@ class ScaffoldGeneric extends GetResponsiveView {
                 color: colorTitle != null
                     ? colorTitle
                     //: ThemeService().themeData.appBarTheme.color,
-                    : ThemeData().appBarTheme.color,
+                    : ThemeData().appBarTheme.backgroundColor,
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
               ),
