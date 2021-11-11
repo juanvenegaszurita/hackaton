@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hackaton/ui/components/menu.dart';
+import 'package:hackaton/ui/private/settings_ui.dart';
 
 class ScaffoldGeneric extends GetResponsiveView {
   ScaffoldGeneric({
@@ -33,26 +34,23 @@ class ScaffoldGeneric extends GetResponsiveView {
     double width = screen.isDesktop ? maxWidth : screen.width;
     return Scaffold(
       drawer: isMenu ? Menu() : null,
-      backgroundColor: backgroundColor != null
-          ? backgroundColor
-          //: ThemeController().getThemeModeFromString().scaffoldBackgroundColor,
-          : ThemeData().scaffoldBackgroundColor,
+      backgroundColor: backgroundColor != null ? backgroundColor : null,
+      //: ThemeData().scaffoldBackgroundColor,
       appBar: AppBar(
         actions: isAppBarActions
             ? [
                 IconButton(
                   icon: Icon(Icons.settings),
                   onPressed: () {
-                    /* Get.to(page) */
+                    Get.to(SettingsUI());
                   },
                   tooltip: 'settings.title'.tr,
                 ),
               ]
             : [],
-        backgroundColor: backgroundColorAppBar != null
-            ? backgroundColorAppBar
-            //: ThemeService().themeData.appBarTheme.backgroundColor,
-            : ThemeData().appBarTheme.backgroundColor,
+        backgroundColor:
+            backgroundColorAppBar != null ? backgroundColorAppBar : null,
+        //: ThemeData().appBarTheme.backgroundColor,
         elevation: elevationTitle,
         title: Center(
           child: Container(
@@ -61,10 +59,8 @@ class ScaffoldGeneric extends GetResponsiveView {
             child: Text(
               title,
               style: TextStyle(
-                color: colorTitle != null
-                    ? colorTitle
-                    //: ThemeService().themeData.appBarTheme.color,
-                    : ThemeData().appBarTheme.backgroundColor,
+                color: colorTitle != null ? colorTitle : null,
+                //: ThemeData().appBarTheme.backgroundColor,
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackaton/constants/constants.dart';
 /* import 'package:hackaton/ui/public/public.dart'; */
 import 'package:hackaton/ui/private/private.dart';
 import 'package:hackaton/controllers/auth_controller.dart';
@@ -22,12 +23,13 @@ class Menu extends StatelessWidget {
   List<Widget> listMenu() {
     final List<Map<String, dynamic>> listMenuData = [
       {"title": "home.title".tr, "page": HomeUI()},
+      {"title": 'login.updateProfileTitle'.tr, "page": UpdateProfileUI()}
     ];
 
     final List<Widget> listMenu = [
       DrawerHeader(
         decoration: BoxDecoration(
-          color: Colors.blue,
+          color: AppThemes.dodgerBanco,
         ),
         child: Text('Menú'),
       )

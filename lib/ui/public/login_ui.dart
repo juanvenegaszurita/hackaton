@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hackaton/constants/globals.dart';
 import 'package:hackaton/controllers/auth_controller.dart';
+import 'package:hackaton/controllers/controllers.dart';
 import 'package:hackaton/controllers/language_controller.dart';
 import 'package:hackaton/helpers/validator.dart';
+import 'package:hackaton/models/menu_option_model.dart';
 import 'package:hackaton/ui/components/components.dart';
 import 'package:hackaton/ui/public/reset_password_ui.dart';
 import 'package:hackaton/ui/public/sign_up_ui.dart';
@@ -68,7 +70,8 @@ class LoginUi extends GetResponsiveView {
                     labelText: 'login.signUpLabelButton'.tr,
                     onPressed: () => Get.to(SignUpUI()),
                   ),
-                  languageListTile(context),
+                  languageListTile(),
+                  themeListTile(),
                 ],
               ),
             ),
@@ -78,7 +81,7 @@ class LoginUi extends GetResponsiveView {
     );
   }
 
-  languageListTile(BuildContext context) {
+  languageListTile() {
     return GetBuilder<LanguageController>(
       builder: (controller) => Center(
         child: DropdownPicker(
@@ -88,6 +91,31 @@ class LoginUi extends GetResponsiveView {
             await controller.updateLanguage(value!);
             Get.forceAppUpdate();
           },
+        ),
+      ),
+    );
+  }
+
+  themeListTile() {
+    final List<MenuOptionsModel> themeOptions = [
+      MenuOptionsModel(
+          key: "system", value: 'settings.system'.tr, icon: Icons.brightness_4),
+      MenuOptionsModel(
+          key: "light", value: 'settings.light'.tr, icon: Icons.brightness_low),
+      MenuOptionsModel(
+          key: "dark", value: 'settings.dark'.tr, icon: Icons.brightness_3)
+    ];
+    return GetBuilder<ThemeController>(
+      builder: (controller) => Container(
+        width: double.infinity,
+        child: Center(
+          child: SegmentedSelector(
+            selectedOption: controller.currentTheme,
+            menuOptions: themeOptions,
+            onValueChanged: (value) {
+              controller.setThemeMode(value);
+            },
+          ),
         ),
       ),
     );

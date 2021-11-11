@@ -35,7 +35,7 @@ class ThemeController extends GetxController {
 
   getThemeModeFromStore() async {
     String _themeString = store.read('theme') ?? 'system';
-    setThemeMode(_themeString);
+    await setThemeMode(_themeString);
   }
 
   // checks whether darkmode is set via system or previously by user

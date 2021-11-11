@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
           //defaultTransition: Transition.fade,
           theme: AppThemes.light,
           darkTheme: AppThemes.dark,
-          themeMode: ThemeMode.system,
+          themeMode: ThemeMode.dark,
           initialRoute: "/",
           getPages: AppRoutes.routes,
         ),
