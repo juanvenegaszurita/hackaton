@@ -1,19 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hackaton/controllers/private/home_controller.dart';
 import 'package:hackaton/ui/components/components.dart';
+import 'package:hackaton/controllers/controllers.dart';
 
 class HomeUI extends StatelessWidget {
+  final AuthController authController = AuthController.to;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeController>(
-      id: "home",
-      init: HomeController(),
-      builder: (controller) => ScaffoldGeneric(
-        body: Column(
-          children: [
-            Text('home'),
-          ],
+    //print('user.name: ' + user?.value?.name);
+    return ScaffoldGeneric(
+      title: 'home.title'.tr,
+      body: Form(
+        key: _formKey,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  LogoGraphicHeader(),
+                  SizedBox(height: 48.0),
+                  // FormInputFieldWithIcon(),
+                  FormVerticalSpace(),
+                  //FormInputFieldWithIcon(),
+                  FormVerticalSpace(),
+                  FormVerticalSpace(),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );

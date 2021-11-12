@@ -64,7 +64,7 @@ class Localization extends Translations {
           'settings.system': 'Sistema',
           'settings.updateProfile': 'Actualización del perfil',
           /** home */
-          'home.title': 'Inicio',
+          'home.title': 'Jugadores',
         },
         'en': {
           /** login */
@@ -121,7 +121,7 @@ class Localization extends Translations {
           'settings.system': 'System',
           'settings.updateProfile': 'Profile update',
           /** home */
-          'home.title': 'Home',
+          'home.title': 'Players',
         },
       };
 }
