@@ -42,14 +42,28 @@ class TournamentService {
         },
       );
 
-  bool updateTournament(String idTournament, TournamentModel tournamentModel) {
+  Future<bool> updateTournament(
+      String idTournament, TournamentModel tournamentModel) async {
     try {
-      _db
+      await _db
           .collection('torneosPrueba')
           .doc(authController.firebaseUser.value!.uid)
           .collection('listaTorneo')
           .doc(idTournament)
           .update(tournamentModel.toJson());
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> newTournament(TournamentModel tournamentModel) async {
+    try {
+      await _db
+          .collection('torneosPrueba')
+          .doc(authController.firebaseUser.value!.uid)
+          .collection('listaTorneo')
+          .add(tournamentModel.toJson());
       return true;
     } catch (e) {
       return false;

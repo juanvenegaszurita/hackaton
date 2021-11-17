@@ -123,7 +123,8 @@ class TournamentDashboardUI extends StatelessWidget {
           children: [
             PrimaryButton(
               labelText: 'tournamentDashboard.saved'.tr,
-              onPressed: () => controller.tournamentService.updateTournament(
+              onPressed: () async =>
+                  await controller.tournamentService.updateTournament(
                 'FBvzaHJHiy2GeQRZX4Hk',
                 controller.getTournamentModel(),
               ),
