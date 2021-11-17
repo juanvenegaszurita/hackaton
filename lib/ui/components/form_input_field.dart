@@ -13,15 +13,17 @@ FormInputField(
 */
 
 class FormInputField extends StatelessWidget {
-  FormInputField(
-      {required this.controller,
-      required this.labelText,
-      required this.validator,
-      this.keyboardType = TextInputType.text,
-      this.obscureText = false,
-      this.minLines = 1,
-      required this.onChanged,
-      required this.onSaved});
+  FormInputField({
+    required this.controller,
+    required this.labelText,
+    required this.validator,
+    this.keyboardType = TextInputType.text,
+    this.obscureText = false,
+    this.minLines = 1,
+    this.enabled = true,
+    required this.onChanged,
+    required this.onSaved,
+  });
 
   final TextEditingController controller;
   final String labelText;
@@ -29,6 +31,7 @@ class FormInputField extends StatelessWidget {
   final TextInputType keyboardType;
   final bool obscureText;
   final int minLines;
+  final bool enabled;
   final void Function(String) onChanged;
   final void Function(String?)? onSaved;
 
@@ -37,22 +40,25 @@ class FormInputField extends StatelessWidget {
     return TextFormField(
       decoration: InputDecoration(
         border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(
-          Radius.circular(8.0),
-        )),
+          borderRadius: BorderRadius.all(
+            Radius.circular(8.0),
+          ),
+        ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.black45, width: 1.0),
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-              color: /*Palette.focusedinputBorderColor*/ Colors.black45,
-              width: 1.0),
+            color: /*Palette.focusedinputBorderColor*/ Colors.black45,
+            width: 1.0,
+          ),
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
         ),
         filled: true,
         fillColor: Colors.black45, //Palette.inputFillColor,
         labelText: labelText,
+        enabled: enabled,
       ),
       controller: controller,
       onSaved: onSaved,

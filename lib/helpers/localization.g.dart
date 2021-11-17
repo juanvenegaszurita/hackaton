@@ -65,6 +65,14 @@ class Localization extends Translations {
           'settings.updateProfile': 'Actualización del perfil',
           /** home */
           'home.title': 'Inicio',
+          /** tournamentDashboard */
+          'tournamentDashboard.title': 'Tablero de torneos',
+          'tournamentDashboard.date': 'Fecha',
+          'tournamentDashboard.hour': 'Hora',
+          'tournamentDashboard.numEquipment': 'N° de Equipos',
+          'tournamentDashboard.location': 'Ubicación',
+          'tournamentDashboard.detail': 'Detalle',
+          'tournamentDashboard.saved': 'Guardar',
         },
         'en': {
           /** login */
@@ -122,6 +130,14 @@ class Localization extends Translations {
           'settings.updateProfile': 'Profile update',
           /** home */
           'home.title': 'Home',
+          /** tournamentDashboard */
+          'tournamentDashboard.title': 'Tournament Dashboard',
+          'tournamentDashboard.date': 'Date',
+          'tournamentDashboard.hour': 'Hora',
+          'tournamentDashboard.numEquipment': 'N° of Equipment',
+          'tournamentDashboard.location': 'Location',
+          'tournamentDashboard.detail': 'Detail',
+          'tournamentDashboard.saved': 'Save',
         },
       };
 }
