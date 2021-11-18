@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hackaton/controllers/auth_controller.dart';
 import 'package:hackaton/models/tournament_model.dart';
+import 'package:hackaton/ui/components/loading.dart';
 
 class TournamentService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
@@ -43,7 +43,10 @@ class TournamentService {
       );
 
   Future<bool> updateTournament(
-      String idTournament, TournamentModel tournamentModel) async {
+    String idTournament,
+    TournamentModel tournamentModel,
+  ) async {
+    showLoadingIndicator();
     try {
       await _db
           .collection('torneosPrueba')
@@ -51,21 +54,28 @@ class TournamentService {
           .collection('listaTorneo')
           .doc(idTournament)
           .update(tournamentModel.toJson());
+      hideLoadingIndicator();
       return true;
     } catch (e) {
+      hideLoadingIndicator();
       return false;
     }
   }
 
-  Future<bool> newTournament(TournamentModel tournamentModel) async {
+  Future<bool> newTournament(
+    TournamentModel tournamentModel,
+  ) async {
+    showLoadingIndicator();
     try {
       await _db
           .collection('torneosPrueba')
           .doc(authController.firebaseUser.value!.uid)
           .collection('listaTorneo')
           .add(tournamentModel.toJson());
+      hideLoadingIndicator();
       return true;
     } catch (e) {
+      hideLoadingIndicator();
       return false;
     }
   }
