@@ -8,6 +8,7 @@ export 'form_vertical_spacing.dart';
 export 'qualification.dart';
 export 'form_input_field.dart';
 export 'form_input_field_with_icon.dart';
+export 'form_input_field_with_icon_click.dart';
 export 'splash_ui.dart';
 export 'loading.dart';
 export 'logo_graphic_header.dart';

@@ -23,7 +23,11 @@ class Menu extends StatelessWidget {
   List<Widget> listMenu() {
     final List<Map<String, dynamic>> listMenuData = [
       {"title": "home.title".tr, "page": HomeUI()},
-      {"title": 'login.updateProfileTitle'.tr, "page": UpdateProfileUI()}
+      {"title": 'login.updateProfileTitle'.tr, "page": UpdateProfileUI()},
+      {
+        "title": 'tournamentDashboard.title'.tr,
+        "page": TournamentDashboardUI()
+      },
     ];
 
     final List<Widget> listMenu = [

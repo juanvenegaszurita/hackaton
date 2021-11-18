@@ -66,6 +66,15 @@ class Localization extends Translations {
           /** home */
           'home.title': 'Jugadores',
           'home.namePlayer': 'Nombre Jugador',
+          'home.title': 'Inicio',
+          /** tournamentDashboard */
+          'tournamentDashboard.title': 'Tablero de torneos',
+          'tournamentDashboard.date': 'Fecha',
+          'tournamentDashboard.hour': 'Hora',
+          'tournamentDashboard.numEquipment': 'N° de Equipos',
+          'tournamentDashboard.location': 'Ubicación',
+          'tournamentDashboard.detail': 'Detalle',
+          'tournamentDashboard.saved': 'Guardar',
         },
         'en': {
           /** login */
@@ -121,9 +130,6 @@ class Localization extends Translations {
           'settings.light': 'Light',
           'settings.system': 'System',
           'settings.updateProfile': 'Profile update',
-          /** home */
-          'home.title': 'Players',
-          'home.namePlayer': 'Player Name',
         },
       };
 }

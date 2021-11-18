@@ -15,9 +15,9 @@ FormInputFieldWithIcon(
 class FormInputFieldWithIcon extends StatelessWidget {
   FormInputFieldWithIcon({
     required this.controller,
-    required this.iconPrefix,
     required this.labelText,
     required this.validator,
+    this.iconPrefix,
     this.keyboardType = TextInputType.text,
     this.obscureText = false,
     this.minLines = 1,
@@ -32,7 +32,7 @@ class FormInputFieldWithIcon extends StatelessWidget {
   });
 
   final TextEditingController controller;
-  final IconData iconPrefix;
+  final IconData? iconPrefix;
   final String labelText;
   final String? Function(String?)? validator;
   final TextInputType keyboardType;
@@ -60,7 +60,7 @@ class FormInputFieldWithIcon extends StatelessWidget {
         enabled: enabled,
         decoration: InputDecoration(
           filled: true,
-          prefixIcon: Icon(iconPrefix),
+          prefixIcon: iconPrefix != null ? Icon(iconPrefix) : null,
           labelText: labelText,
         ),
         controller: controller,

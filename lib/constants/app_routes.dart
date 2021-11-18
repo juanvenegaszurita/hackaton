@@ -13,7 +13,8 @@ class AppRoutes {
     GetPage(name: '/signup', page: () => SignUpUI()),
     GetPage(name: '/home', page: () => HomeUI()),
     GetPage(name: '/settings', page: () => SettingsUI()),
-    GetPage(name: '/reset-password', page: () => ResetPasswordUI()),
-    GetPage(name: '/update-profile', page: () => UpdateProfileUI()),
+    GetPage(name: '/resetPassword', page: () => ResetPasswordUI()),
+    GetPage(name: '/updateProfile', page: () => UpdateProfileUI()),
+    GetPage(name: '/tournamentDashboard', page: () => TournamentDashboardUI()),
   ];
 }
