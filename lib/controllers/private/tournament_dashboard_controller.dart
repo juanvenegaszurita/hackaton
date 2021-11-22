@@ -40,7 +40,8 @@ class TournamentDashboardController extends GetxController {
     nroEquiposController.text = currentTournament.nroEquipos.toString();
     ubicacionController.text = currentTournament.ubicacion;
     DateTime fechaDT = DateTime.fromMicrosecondsSinceEpoch(
-        currentTournament.fecha.microsecondsSinceEpoch);
+      currentTournament.fecha.microsecondsSinceEpoch,
+    );
 
     hora.value = "${fechaDT.hour}:${fechaDT.minute}";
     fecha.value = fechaDT.toString().split(" ")[0];
