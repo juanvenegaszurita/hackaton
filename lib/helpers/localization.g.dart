@@ -66,7 +66,9 @@ class Localization extends Translations {
           /** home */
           'home.title': 'Jugadores',
           'home.namePlayer': 'Nombre Jugador',
-          'home.title': 'Inicio',
+          'home.createNewTournament': 'Crear Torneo',
+          'home.newTournament': 'Nuevo Torneo',
+          'home.listTour': 'Lista de Torneos',
           /** tournamentDashboard */
           'tournamentDashboard.title': 'Tablero de torneos',
           'tournamentDashboard.date': 'Fecha',
@@ -130,6 +132,21 @@ class Localization extends Translations {
           'settings.light': 'Light',
           'settings.system': 'System',
           'settings.updateProfile': 'Profile update',
+          /** home */
+          'home.title': 'Players',
+          'home.namePlayer': 'Player Name',
+          'home.createNewTournament': 'New Tournament',
+          'home.newTournament': 'New Tournament',
+          'home.listTour': 'Tournament List',
+
+          /** tournamentDashboard */
+          'tournamentDashboard.title': 'Tournament Dashboard',
+          'tournamentDashboard.date': 'Date',
+          'tournamentDashboard.hour': 'Hora',
+          'tournamentDashboard.numEquipment': 'N° of Equipment',
+          'tournamentDashboard.location': 'Location',
+          'tournamentDashboard.detail': 'Detail',
+          'tournamentDashboard.saved': 'Save',
         },
       };
 }

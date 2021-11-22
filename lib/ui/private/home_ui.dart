@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hackaton/controllers/private/home_controller.dart';
@@ -52,6 +53,44 @@ class HomeUI extends StatelessWidget {
               list: controller.currentParticipantes,
               //onPressed: controller.removePlayer(),
             ),
+            Column(
+              children: [],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      PrimaryButton(
+                          labelText: 'home.createNewTournament'.tr,
+                          onPressed: () async =>
+                              await controller.createNewTournament())
+                    ],
+                  ),
+                )
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CupertinoTabBar(items: <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.group_add_outlined),
+                    //activeIcon: HomeUI(),
+                    tooltip: 'home.newTournament'.tr,
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.account_tree_outlined),
+                    tooltip: 'home.listTour'.tr,
+                  ),
+                ])
+              ],
+            )
           ],
         ),
       ),
