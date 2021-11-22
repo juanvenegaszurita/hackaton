@@ -5,11 +5,13 @@ class TeamsModel {
   final int id;
   final String nombre;
   final List<CompetitorModel> participantes;
+  final int puntos;
 
   TeamsModel({
     required this.id,
     required this.nombre,
     required this.participantes,
+    required this.puntos,
   });
 
   factory TeamsModel.fromMap(Map data) {
@@ -23,12 +25,14 @@ class TeamsModel {
       id: data['id'] ?? 0,
       nombre: data['nombre'] ?? '',
       participantes: participantes,
+      puntos: data['puntos'] ?? 0,
     );
   }
 
   Map<String, dynamic> toJson() => {
         "nombre": nombre,
         "participantes": participantes,
+        "puntos": puntos,
       };
   @override
   String toString() {
@@ -36,6 +40,7 @@ class TeamsModel {
       "id": id,
       "nombre": nombre,
       "participantes": participantes,
+      "puntos": puntos,
     });
   }
 }

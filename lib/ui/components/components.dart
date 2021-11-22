@@ -5,6 +5,7 @@ export 'form_input_field_with_icon_click.dart';
 export 'form_input_field_with_icon.dart';
 export 'form_input_field.dart';
 export 'form_vertical_spacing.dart';
+export 'graph-tournament.dart';
 export 'grid_responsive.dart';
 export 'label_button.dart';
 export 'label_icon.dart';

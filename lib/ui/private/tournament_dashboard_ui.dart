@@ -13,9 +13,14 @@ class TournamentDashboardUI extends StatelessWidget {
       builder: (controller) => ScaffoldGeneric(
         title: 'tournamentDashboard.title'.tr,
         body: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             tournamentsDetail(context, controller),
-            tournamentDashboar(),
+            FormVerticalSpace(),
+            GraphTournament(
+              competencias: controller.currentTournament.competencia,
+            ),
+            FormVerticalSpace(),
           ],
         ),
       ),
@@ -73,7 +78,7 @@ class TournamentDashboardUI extends StatelessWidget {
               labelText: controller.currentHora,
             ),
             FormInputFieldWithIcon(
-              enabled: isLogin,
+              enabled: false,
               controller: controller.nroEquiposController,
               iconPrefix: Icons.format_list_numbered,
               labelText: 'tournamentDashboard.numEquipment'.tr,
@@ -114,6 +119,7 @@ class TournamentDashboardUI extends StatelessWidget {
             ),
           ],
         ),
+        FormVerticalSpace(),
         GridResponsive(
           xl: 1,
           lg: 1,
@@ -156,9 +162,5 @@ class TournamentDashboardUI extends StatelessWidget {
       context: context,
     );
     if (picked != null) controller.setHora("${picked.hour}:${picked.minute}");
-  }
-
-  tournamentDashboar() {
-    return Text("tournamentDashboar");
   }
 }
