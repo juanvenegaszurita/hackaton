@@ -1,5 +1,7 @@
-//User Model
+import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:hackaton/models/competence_model.dart';
+import 'package:hackaton/models/competitor_models.dart';
 
 class TournamentModel {
   final String id;
@@ -9,9 +11,8 @@ class TournamentModel {
   final String nombreJuego;
   final int nroEquipos;
   final String ubicacion;
-  final List<dynamic> participantes;
-  final List<dynamic> competencia;
-  /* final List<dynamic> competencia; */
+  final List<CompetitorModel> participantes;
+  final List<CompetenceModel> competencia;
 
   TournamentModel({
     required this.id,
@@ -26,6 +27,20 @@ class TournamentModel {
   });
 
   factory TournamentModel.fromMap(Map data) {
+    List<CompetenceModel> competencia = [];
+    if (data['competencia'] != null) {
+      (data['competencia'] as List).asMap().forEach((key, value) {
+        value = value as Map<dynamic, dynamic>;
+        value['id'] = key;
+        competencia.add(CompetenceModel.fromMap(value));
+      });
+    }
+    List<CompetitorModel> participantes = [];
+    if (data['participantes'] != null) {
+      (data['participantes'] as List).asMap().forEach((key, value) {
+        participantes.add(CompetitorModel(id: key, nombre: value));
+      });
+    }
     return TournamentModel(
       id: data['id'] ?? '',
       nombre: data['nombre'] ?? '',
@@ -34,8 +49,8 @@ class TournamentModel {
       nombreJuego: data['nombreJuego'] ?? '',
       nroEquipos: data['nroEquipos'] ?? 0,
       ubicacion: data['ubicacion'] ?? '',
-      participantes: data['participantes'] != null ? data['participantes'] : [],
-      competencia: data['competencia'] ?? [],
+      participantes: participantes,
+      competencia: competencia,
     );
   }
 
@@ -49,4 +64,18 @@ class TournamentModel {
         "participantes": participantes,
         "competencia": competencia,
       };
+  @override
+  String toString() {
+    return json.encode({
+      "id": id,
+      "nombre": nombre,
+      "fecha": fecha.toString(),
+      "detalle": detalle,
+      "nombreJuego": nombreJuego,
+      "nroEquipos": nroEquipos,
+      "ubicacion": ubicacion,
+      "participantes": participantes,
+      "competencia": competencia,
+    });
+  }
 }
