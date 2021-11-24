@@ -14,7 +14,6 @@ class HomeUI extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    //print('user.name: ' + user?.value?.name);
     return GetBuilder<HomeController>(
       id: "home",
       init: HomeController(),
@@ -24,6 +23,17 @@ class HomeUI extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
+            Text(controller.currentnroEquipos.toString()),
+            Slider(
+              value: controller.currentnroEquipos,
+              min: 0,
+              max: 100,
+              divisions: controller.currentDivision,
+              label: controller.currentnroEquipos.round().toString(),
+              onChanged: (double value) {
+                controller.setNroEquipos(value);
+              },
+            ),
             GridResponsive(
               xs: 2,
               sm: 2,
@@ -52,9 +62,6 @@ class HomeUI extends StatelessWidget {
             ListCardDetails(
               list: controller.currentParticipantes,
               //onPressed: controller.removePlayer(),
-            ),
-            Column(
-              children: [],
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,

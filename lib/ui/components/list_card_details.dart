@@ -50,12 +50,6 @@ class ListCardDetails extends StatelessWidget {
                             Icons.delete_outline,
                             size: 46,
                           )
-                          /* IconButton(
-                            onPressed: onPressed,
-                            icon: Icon(Icons.delete_rounded),
-                            iconSize: 36,
-                          ) */
-                          //Text(e.toString())
                         ],
                       ),
                     ),

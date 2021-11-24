@@ -69,6 +69,7 @@ class Localization extends Translations {
           'home.createNewTournament': 'Crear Torneo',
           'home.newTournament': 'Nuevo Torneo',
           'home.listTour': 'Lista de Torneos',
+          'home.setPlayers': 'establecer jugadores',
           /** tournamentDashboard */
           'tournamentDashboard.title': 'Tablero de torneos',
           'tournamentDashboard.date': 'Fecha',
@@ -138,6 +139,7 @@ class Localization extends Translations {
           'home.createNewTournament': 'New Tournament',
           'home.newTournament': 'New Tournament',
           'home.listTour': 'Tournament List',
+          'home.setPlayers': 'set Players',
 
           /** tournamentDashboard */
           'tournamentDashboard.title': 'Tournament Dashboard',
