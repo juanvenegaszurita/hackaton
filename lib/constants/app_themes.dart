@@ -15,7 +15,7 @@ class AppThemes {
   static const Color juneBud = Color.fromRGBO(186, 215, 97, 1);
   static const Color white = Color.fromRGBO(255, 255, 255, 1);
   static const Color nevada = Color.fromRGBO(119, 119, 119, 1);
-  static const Color ebonyClay = Color.fromRGBO(0, 0, 0, 1);
+  static const Color ebonyClay = Color.fromRGBO(25, 25, 25, 1);
 
   static String font1 = "ProductSans";
   static String font2 = "Roboto";

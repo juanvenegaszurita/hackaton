@@ -17,8 +17,43 @@ class TournamentDashboardUI extends StatelessWidget {
           children: [
             tournamentsDetail(context, controller),
             FormVerticalSpace(),
-            GraphTournament(
-              competencias: controller.currentTournament.competencia,
+            DefaultTabController(
+              length: 2,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    child: TabBar(
+                      labelColor: Theme.of(context).appBarTheme.backgroundColor,
+                      unselectedLabelColor:
+                          Theme.of(context).textTheme.button!.color!,
+                      indicatorColor:
+                          Theme.of(context).appBarTheme.backgroundColor,
+                      tabs: [
+                        Tab(text: 'tournamentDashboard.tabGraphic'.tr),
+                        Tab(text: 'tournamentDashboard.tabList'.tr),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    constraints: BoxConstraints(
+                      maxHeight: 1000,
+                    ),
+                    child: TabBarView(
+                      children: [
+                        GraphCompetenceTournament(
+                          competencias:
+                              controller.currentTournament.competencia,
+                        ),
+                        ListCompetenceTournament(
+                          competencias:
+                              controller.currentTournament.competencia,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
             FormVerticalSpace(),
           ],
@@ -50,7 +85,7 @@ class TournamentDashboardUI extends StatelessWidget {
               enabled: isLogin,
               controller: controller.nombreController,
               iconPrefix: Icons.app_registration,
-              labelText: 'Nombre',
+              labelText: 'tournamentDashboard.name'.tr,
               validator: Validator().notEmpty,
               keyboardType: TextInputType.text,
               onChanged: (value) => null,
@@ -131,7 +166,7 @@ class TournamentDashboardUI extends StatelessWidget {
               labelText: 'tournamentDashboard.saved'.tr,
               onPressed: () async =>
                   await controller.tournamentService.updateTournament(
-                'FBvzaHJHiy2GeQRZX4Hk',
+                controller.currentId,
                 controller.getTournamentModel(),
               ),
             ),

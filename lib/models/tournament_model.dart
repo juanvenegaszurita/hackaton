@@ -61,8 +61,8 @@ class TournamentModel {
         "nombreJuego": nombreJuego,
         "nroEquipos": nroEquipos,
         "ubicacion": ubicacion,
-        "participantes": participantes,
-        "competencia": competencia,
+        "participantes": participantes.map((e) => e.nombre),
+        "competencia": competencia.map((e) => e.toJson()),
       };
   @override
   String toString() {

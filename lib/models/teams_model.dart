@@ -6,12 +6,27 @@ class TeamsModel {
   final String nombre;
   final List<CompetitorModel> participantes;
   final int puntos;
+  final int estado;
+
+  List<String> get getEstados => [
+        "Pendiente",
+        "Activo",
+        "Ganador",
+        "Perdedor",
+        "Ganador Competencia",
+      ];
+  static int pendiente = 0;
+  static int activo = 1;
+  static int ganador = 2;
+  static int perdedor = 3;
+  static int ganadorCompetencia = 4;
 
   TeamsModel({
     required this.id,
     required this.nombre,
     required this.participantes,
     required this.puntos,
+    required this.estado,
   });
 
   factory TeamsModel.fromMap(Map data) {
@@ -26,14 +41,17 @@ class TeamsModel {
       nombre: data['nombre'] ?? '',
       participantes: participantes,
       puntos: data['puntos'] ?? 0,
+      estado: data['estado'] ?? 0,
     );
   }
 
   Map<String, dynamic> toJson() => {
         "nombre": nombre,
-        "participantes": participantes,
+        "participantes": participantes.map((e) => e.nombre),
         "puntos": puntos,
+        "estado": estado,
       };
+
   @override
   String toString() {
     return json.encode({
@@ -41,6 +59,7 @@ class TeamsModel {
       "nombre": nombre,
       "participantes": participantes,
       "puntos": puntos,
+      "estado": estado,
     });
   }
 }

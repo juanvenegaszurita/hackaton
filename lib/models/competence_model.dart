@@ -30,7 +30,7 @@ class CompetenceModel {
 
   Map<String, dynamic> toJson() => {
         "etapa": etapa,
-        "teams": teams,
+        "teams": teams.map((e) => e.toJson()),
       };
   @override
   String toString() {

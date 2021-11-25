@@ -47,6 +47,7 @@ class FormInputFieldWithIconClick extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
+          color: Theme.of(context).inputDecorationTheme.fillColor,
           border: Border.all(
               color: Theme.of(context)
                   .inputDecorationTheme
@@ -71,7 +72,14 @@ class FormInputFieldWithIconClick extends StatelessWidget {
           crossAxisAlignment: WrapCrossAlignment.center,
           spacing: 5,
           children: [
-            Icon(iconPrefix),
+            Icon(
+              iconPrefix,
+              color: Theme.of(context)
+                  .inputDecorationTheme
+                  .enabledBorder!
+                  .borderSide
+                  .color,
+            ),
             Text(
               labelTextPrefix,
               style: TextStyle(
