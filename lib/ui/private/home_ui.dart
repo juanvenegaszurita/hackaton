@@ -18,89 +18,99 @@ class HomeUI extends StatelessWidget {
       id: "home",
       init: HomeController(),
       builder: (controller) => ScaffoldGeneric(
-        title: 'home.title'.tr,
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(controller.currentnroEquipos.toString()),
-            Slider(
-              value: controller.currentnroEquipos,
-              min: 0,
-              max: 100,
-              divisions: controller.currentDivision,
-              label: controller.currentnroEquipos.round().toString(),
-              onChanged: (double value) {
-                controller.setNroEquipos(value);
-              },
-            ),
-            GridResponsive(
-              xs: 2,
-              sm: 2,
-              md: 2,
-              lg: 2,
-              xl: 2,
+          title: 'home.title'.tr,
+          body: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               children: [
-                FormInputFieldWithIcon(
-                  controller: controller.nombreParticipanteController,
-                  iconPrefix: Icons.person,
-                  labelText: 'home.namePlayer'.tr,
-                  validator: Validator().notEmpty,
-                  keyboardType: TextInputType.text,
-                  onChanged: (value) => null,
-                  onSaved: (value) =>
-                      controller.nombreParticipanteController.text = value!,
-                ),
-                IconButton(
-                  onPressed: () {
-                    controller.addPlayer();
+                GridResponsive(xs: 2, sm: 2, md: 2, lg: 2, xl: 2, children: [
+                  Text("Cantidad de Equipos ", style: TextStyle(fontSize: 20)),
+                  Text(
+                    controller.currentnroEquipos.toString(),
+                    style: TextStyle(fontSize: 35, color: Colors.orange),
+                  ),
+                ]),
+                Slider(
+                  value: controller.currentnroEquipos,
+                  min: 0,
+                  max: 100,
+                  divisions: controller.currentDivision,
+                  label: controller.currentnroEquipos.round().toString(),
+                  onChanged: (double value) {
+                    controller.setNroEquipos(value);
                   },
-                  icon: Icon(Icons.add),
+                ),
+                GridResponsive(
+                  xs: 2,
+                  sm: 2,
+                  md: 2,
+                  lg: 2,
+                  xl: 2,
+                  children: [
+                    FormInputFieldWithIcon(
+                      controller: controller.nombreParticipanteController,
+                      iconPrefix: Icons.person,
+                      labelText: 'home.namePlayer'.tr,
+                      validator: Validator().notEmpty,
+                      keyboardType: TextInputType.text,
+                      onChanged: (value) => null,
+                      onSaved: (value) =>
+                          controller.nombreParticipanteController.text = value!,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          controller.addPlayer();
+                        }
+                      },
+                      icon: Icon(Icons.add),
+                    )
+                  ],
+                ),
+                ListCardDetails(
+                  list: controller.currentParticipantes,
+                  //onPressed: controller.removePlayer(),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          PrimaryButton(
+                              labelText: 'home.createNewTournament'.tr,
+                              onPressed: () async =>
+                                  await controller.createNewTournament())
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    CupertinoTabBar(items: <BottomNavigationBarItem>[
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.group_add_outlined),
+                        //activeIcon: HomeUI(),
+                        tooltip: 'home.newTournament'.tr,
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.account_tree_outlined),
+                        tooltip: 'home.listTour'.tr,
+                      ),
+                    ])
+                  ],
                 )
               ],
             ),
-            ListCardDetails(
-              list: controller.currentParticipantes,
-              //onPressed: controller.removePlayer(),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      PrimaryButton(
-                          labelText: 'home.createNewTournament'.tr,
-                          onPressed: () async =>
-                              await controller.createNewTournament())
-                    ],
-                  ),
-                )
-              ],
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                CupertinoTabBar(items: <BottomNavigationBarItem>[
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.group_add_outlined),
-                    //activeIcon: HomeUI(),
-                    tooltip: 'home.newTournament'.tr,
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.account_tree_outlined),
-                    tooltip: 'home.listTour'.tr,
-                  ),
-                ])
-              ],
-            )
-          ],
-        ),
-      ),
+          )),
     );
   }
 }

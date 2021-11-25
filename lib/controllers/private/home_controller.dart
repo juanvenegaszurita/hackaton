@@ -35,7 +35,7 @@ class HomeController extends GetxController {
       List<CompetitorModel> participantes = [];
       List<List<TeamsModel>> listTeams = [];
       List<CompetitorModel> competitorModel = [];
-      List<CompetenceModel> competencia = [];
+      List<CompetenceModel> competencias = [];
       int incremento = 0;
       double cantidadParticipantesPorEquipo =
           currentParticipantes.length / currentnroEquipos.toInt();
@@ -43,7 +43,6 @@ class HomeController extends GetxController {
       currentParticipantes.asMap().forEach((key, value) {
         participantes.add(CompetitorModel(id: key, nombre: value));
       });
-
       listTeams = List.generate(cantidadParticipantesPorEquipo.toInt(), (ind) {
         List<TeamsModel> teamsModel = [];
         for (int i = 0;
@@ -59,9 +58,15 @@ class HomeController extends GetxController {
         return teamsModel;
       });
 
-      print(listTeams);
+      listTeams.asMap().forEach((key, value) {
+        competencias
+            .add(CompetenceModel(id: key, etapa: "Etapa $key", teams: value));
+      });
 
-      tor.newTournament(TournamentModel(
+      print(competencias.length);
+      print(competencias);
+
+      /*tor.newTournament(TournamentModel(
           id: '',
           nombre: 'Torneo',
           fecha: Timestamp.now(),
@@ -70,7 +75,7 @@ class HomeController extends GetxController {
           nroEquipos: currentnroEquipos.toInt(),
           ubicacion: '',
           participantes: participantes,
-          competencia: competencia));
+          competencia: competencia));*/
     }
   }
 
