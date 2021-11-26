@@ -43,7 +43,7 @@ class Menu extends StatelessWidget {
       listMenu.add(ListTile(
         title: Text(menu['title']),
         onTap: () {
-          Get.to(menu['page']);
+          Get.to(menu['page'], arguments: {"id": 'ZkmOWq57WKcDs75I3qRu'});
         },
       ));
     });

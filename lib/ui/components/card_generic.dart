@@ -4,7 +4,7 @@ class CardGeneric extends StatelessWidget {
   CardGeneric({
     required this.body,
     this.onTap,
-    this.color = Colors.grey,
+    this.color,
     this.width = 100,
     this.height = 100,
     this.paddingBottom: 10,
@@ -14,7 +14,7 @@ class CardGeneric extends StatelessWidget {
   });
   final Widget body;
   final void Function()? onTap;
-  final Color color;
+  final Color? color;
   final double width;
   final double height;
   final double paddingBottom;
@@ -27,14 +27,20 @@ class CardGeneric extends StatelessWidget {
       width: width,
       height: height,
       child: Card(
+        color: color,
         elevation: 5,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
         ),
         child: InkWell(
-          splashColor: color.withAlpha(300),
+          splashColor: color != null
+              ? color!.withAlpha(300)
+              : Colors.grey.withAlpha(300),
           borderRadius: BorderRadius.circular(15.0),
-          hoverColor: color.withAlpha(50),
+          hoverColor:
+              color != null ? color!.withAlpha(50) : Colors.grey.withAlpha(50),
+          focusColor:
+              color != null ? color!.withAlpha(80) : Colors.grey.withAlpha(80),
           onTap: onTap,
           child: Padding(
             padding: EdgeInsets.only(
