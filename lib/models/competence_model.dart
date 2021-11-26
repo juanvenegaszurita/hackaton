@@ -37,7 +37,7 @@ class CompetenceModel {
     return json.encode({
       "id": id,
       "etapa": etapa,
-      "teams": teams,
+      "teams": teams.toString(),
     });
   }
 }

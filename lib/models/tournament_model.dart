@@ -74,8 +74,8 @@ class TournamentModel {
       "nombreJuego": nombreJuego,
       "nroEquipos": nroEquipos,
       "ubicacion": ubicacion,
-      "participantes": participantes,
-      "competencia": competencia,
+      "participantes": participantes.toString(),
+      "competencia": competencia.toString(),
     });
   }
 }

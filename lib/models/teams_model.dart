@@ -57,7 +57,7 @@ class TeamsModel {
     return json.encode({
       "id": id,
       "nombre": nombre,
-      "participantes": participantes,
+      "participantes": participantes.toString(),
       "puntos": puntos,
       "estado": estado,
     });
