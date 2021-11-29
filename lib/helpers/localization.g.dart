@@ -65,7 +65,12 @@ class Localization extends Translations {
           'settings.system': 'Sistema',
           'settings.updateProfile': 'Actualización del perfil',
           /** home */
-          'home.title': 'Inicio',
+          'home.title': 'Jugadores',
+          'home.namePlayer': 'Nombre Jugador',
+          'home.createNewTournament': 'Crear Torneo',
+          'home.newTournament': 'Nuevo Torneo',
+          'home.listTour': 'Lista de Torneos',
+          'home.setPlayers': 'establecer jugadores',
           /** tournamentDashboard */
           'tournamentDashboard.title': 'Tablero de torneos',
           'tournamentDashboard.name': 'Nombre',
@@ -155,7 +160,13 @@ class Localization extends Translations {
           'settings.system': 'System',
           'settings.updateProfile': 'Profile update',
           /** home */
-          'home.title': 'Home',
+          'home.title': 'Players',
+          'home.namePlayer': 'Player Name',
+          'home.createNewTournament': 'New Tournament',
+          'home.newTournament': 'New Tournament',
+          'home.listTour': 'Tournament List',
+          'home.setPlayers': 'set Players',
+
           /** tournamentDashboard */
           'tournamentDashboard.title': 'Tournament Dashboard',
           'tournamentDashboard.name': 'Name',

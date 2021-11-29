@@ -22,10 +22,8 @@ class Tournament {
     return lista;
   }
 
-  static TournamentModel createTourment(
-    List<String> listParticipantes,
-    int nroEquipos,
-  ) {
+  TournamentModel createTourment(
+      List<String> listParticipantes, int nroEquipos) {
     int indTmpPart = 0;
     List<CompetenceModel> competencia = [];
     int etapa = 1;
