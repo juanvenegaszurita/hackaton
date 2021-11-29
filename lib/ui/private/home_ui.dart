@@ -71,7 +71,6 @@ class HomeUI extends StatelessWidget {
                 ),
                 ListCardDetails(
                   list: controller.currentParticipantes,
-                  //onPressed: controller.removePlayer(),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:hackaton/helpers/tournament.dart';
 import 'package:hackaton/models/models.dart';
 import 'package:get/get.dart';
 import 'package:hackaton/models/competitor_models.dart';
@@ -7,6 +8,7 @@ import 'package:hackaton/models/tournament_model.dart';
 import 'package:hackaton/services/tournament_service.dart';
 
 class HomeController extends GetxController {
+  static HomeController to = Get.find();
   TextEditingController nombreParticipanteController = TextEditingController();
   final TournamentService tournamentService = TournamentService();
   final nroEquipos = 1.0.obs;
@@ -23,59 +25,23 @@ class HomeController extends GetxController {
     update(["home"]);
   }
 
-  removePlayer() {
-    //participantes.value.remove();
-    //update(["home"]);
+  removePlayer(participante) {
+    print(participante);
+    currentParticipantes.remove(participante);
+    update(["home"]);
   }
 
   createNewTournament() {
     if ((currentParticipantes.length > 2) &&
         (currentParticipantes.length > currentnroEquipos.toInt())) {
       TournamentService tor = TournamentService();
-      List<CompetitorModel> participantes = [];
-      List<List<TeamsModel>> listTeams = [];
-      List<CompetitorModel> competitorModel = [];
-      List<CompetenceModel> competencias = [];
-      int incremento = 0;
-      double cantidadParticipantesPorEquipo =
-          currentParticipantes.length / currentnroEquipos.toInt();
-
-      currentParticipantes.asMap().forEach((key, value) {
-        participantes.add(CompetitorModel(id: key, nombre: value));
+      Tournament helperTournament = Tournament();
+      List<String> listParticipantes = [];
+      currentParticipantes.forEach((element) {
+        listParticipantes.add(element);
       });
-      listTeams = List.generate(cantidadParticipantesPorEquipo.toInt(), (ind) {
-        List<TeamsModel> teamsModel = [];
-        for (int i = 0;
-            i < (participantes.length / cantidadParticipantesPorEquipo.toInt());
-            i++) {
-          competitorModel.add(participantes[incremento]);
-          teamsModel.add(TeamsModel(
-              id: i,
-              nombre: "Equipo $incremento",
-              participantes: competitorModel));
-          incremento++;
-        }
-        return teamsModel;
-      });
-
-      listTeams.asMap().forEach((key, value) {
-        competencias
-            .add(CompetenceModel(id: key, etapa: "Etapa $key", teams: value));
-      });
-
-      print(competencias.length);
-      print(competencias);
-
-      /*tor.newTournament(TournamentModel(
-          id: '',
-          nombre: 'Torneo',
-          fecha: Timestamp.now(),
-          detalle: '',
-          nombreJuego: '',
-          nroEquipos: currentnroEquipos.toInt(),
-          ubicacion: '',
-          participantes: participantes,
-          competencia: competencia));*/
+      tor.newTournament(helperTournament.createTourment(
+          listParticipantes, currentnroEquipos.toInt()));
     }
   }
 

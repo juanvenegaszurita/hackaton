@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hackaton/controllers/private/home_controller.dart';
 
 class ListCardDetails extends StatelessWidget {
-  ListCardDetails({required this.list}); //required this.onPressed});
+  ListCardDetails({
+    required this.list,
+  }); //required this.onPressed});
 
   final List<dynamic> list;
-  //final void Function() onChange;
-  //final void Function() onPressed;
-
+  final HomeController controller = HomeController.to;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,10 +47,16 @@ class ListCardDetails extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Icon(
-                            Icons.delete_outline,
-                            size: 46,
-                          )
+                          IconButton(
+                            icon: Icon(
+                              Icons.delete,
+                              size: 26,
+                              color: Colors.orange,
+                            ),
+                            onPressed: () {
+                              controller.removePlayer(e);
+                            },
+                          ),
                         ],
                       ),
                     ),
