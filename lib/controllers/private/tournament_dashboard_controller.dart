@@ -22,12 +22,14 @@ class TournamentDashboardController extends GetxController {
   TextEditingController puntosTeamController = TextEditingController();
 
   final id = "".obs;
+  final uid = "".obs;
   final hora = "00:00".obs;
   final fecha = DateTime.now().toString().split(" ")[0].obs;
   final tournament = TournamentModel.fromMap(Map<String, dynamic>()).obs;
 
   TournamentModel get currentTournament => tournament.value;
   String get currentId => id.value;
+  String get currentUid => uid.value;
   String get currentHora => hora.value;
   String get currentFecha => fecha.value;
 
@@ -35,8 +37,11 @@ class TournamentDashboardController extends GetxController {
   void onReady() async {
     print(Get.arguments);
     id.value = Get.arguments['id'];
-    if (currentId.isNotEmpty) {
-      tournamentService.streamFirestoreTournament(currentId).listen(
+    uid.value = authController.firebaseUser.value?.uid == null
+        ? Get.arguments['uid']
+        : authController.firebaseUser.value!.uid;
+    if (currentId.isNotEmpty && currentUid.isNotEmpty) {
+      tournamentService.streamFirestoreTournament(currentId, currentUid).listen(
         (event) {
           tournament.value = event;
           setDataController();

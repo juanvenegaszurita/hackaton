@@ -16,5 +16,6 @@ class AppRoutes {
     GetPage(name: '/resetPassword', page: () => ResetPasswordUI()),
     GetPage(name: '/updateProfile', page: () => UpdateProfileUI()),
     GetPage(name: '/tournamentDashboard', page: () => TournamentDashboardUI()),
+    GetPage(name: '/viewers', page: () => ViewersUI()),
   ];
 }
