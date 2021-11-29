@@ -6,6 +6,7 @@ class Localization extends Translations {
         'es': {
           /** login */
           'login.signInButton': 'Iniciar sesión',
+          'login.viewersButton': 'Espectadores',
           'login.signUpButton': 'Inscribirse',
           'login.resetPasswordButton': 'Enviar restablecimiento de contraseña',
           'login.emailFormField': 'Correo electrónico',
@@ -95,10 +96,13 @@ class Localization extends Translations {
           'general.messageOK': 'Todo Salio Correcto',
           'general.messageNoOK': 'Error en el proceso',
           'team.name': 'Nombre',
+          /** viewers */
+          'viewers.textTournamentTitle': 'Torneos BancoEstado'
         },
         'en': {
           /** login */
           'login.signInButton': 'Log in',
+          'login.viewersButton': 'Viewers',
           'login.signUpButton': 'Register',
           'login.resetPasswordButton': 'Send reset password',
           'login.emailFormField': 'Email',
@@ -185,6 +189,8 @@ class Localization extends Translations {
           'accounts.questionInsert': 'Do you want to insert?',
           'accounts.questionDelete': 'Do you want to delete?',
           'team.name': 'Name',
+          /** viewers */
+          'viewers.textTournamentTitle': 'Tournament BancoEstado'
         },
       };
 }

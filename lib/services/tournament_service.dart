@@ -42,6 +42,11 @@ class TournamentService {
         },
       );
 
+  Stream<List<QueryDocumentSnapshot<Map<String, dynamic>>>> streamFirestoreListTournamentAll() => _db
+      .collection('torneosPrueba')
+      .snapshots()
+      .map((event) => event.docs.map((e) => e).toList());
+
   Future<bool> updateTournament(
     String idTournament,
     TournamentModel tournamentModel,

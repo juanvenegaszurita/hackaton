@@ -9,6 +9,7 @@ import 'package:hackaton/models/menu_option_model.dart';
 import 'package:hackaton/ui/components/components.dart';
 import 'package:hackaton/ui/public/reset_password_ui.dart';
 import 'package:hackaton/ui/public/sign_up_ui.dart';
+import 'package:hackaton/ui/public/viewers_ui.dart';
 
 class LoginUi extends GetResponsiveView {
   final AuthController authController = AuthController.to;
@@ -61,6 +62,11 @@ class LoginUi extends GetResponsiveView {
                           authController.signInWithEmailAndPassword(context);
                         }
                       }),
+                  FormVerticalSpace(),
+                  PrimaryButton(
+                      labelText: 'login.viewersButton'.tr,
+                      onPressed: () => Get.to(ViewersUI()),
+                      ),
                   FormVerticalSpace(),
                   LabelButton(
                     labelText: 'login.resetPasswordLabelButton'.tr,
