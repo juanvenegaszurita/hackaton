@@ -8,9 +8,12 @@ import 'package:hackaton/ui/components/components.dart';
 class TournamentDashboardUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    bool isLogin = (AuthController.to.firebaseUser.value?.uid != null);
     return GetBuilder<TournamentDashboardController>(
       init: TournamentDashboardController(),
       builder: (controller) => ScaffoldGeneric(
+        isMenu: isLogin,
+        isAppBarActions: isLogin,
         title: 'tournamentDashboard.title'.tr,
         body: Column(
           mainAxisSize: MainAxisSize.min,
@@ -101,13 +104,13 @@ class TournamentDashboardUI extends StatelessWidget {
           paddingTop: 2.5,
           children: [
             FormInputFieldWithIconClick(
-              onTap: () => _selectDate(context, controller),
+              onTap: () => isLogin ? _selectDate(context, controller) : null,
               iconPrefix: Icons.calendar_today,
               labelTextPrefix: 'tournamentDashboard.date'.tr,
               labelText: controller.currentFecha,
             ),
             FormInputFieldWithIconClick(
-              onTap: () => _selectTime(context, controller),
+              onTap: () => isLogin ? _selectTime(context, controller) : null,
               iconPrefix: Icons.timer,
               labelTextPrefix: 'tournamentDashboard.hour'.tr,
               labelText: controller.currentHora,

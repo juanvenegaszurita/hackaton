@@ -1,17 +1,17 @@
-//import 'package:cloud_firestore/cloud_firestore.dart' show Timestamp;
-//import 'package:flutter/material.dart';
-import 'package:get/get.dart'; 
+import 'package:get/get.dart';
+import 'package:hackaton/models/tournament_list_model.dart';
 import 'package:hackaton/models/tournament_model.dart';
 import 'package:hackaton/services/tournament_service.dart';
 
-class TournamentListController extends GetxController { 
+class TournamentListController extends GetxController {
   final TournamentService tournamentService = TournamentService();
- 
-  List<TournamentModel> listaTorneos = []; 
+
+  List<TournamentListModel> tournamentList = [];
+
   @override
   void onReady() async {
     tournamentService.streamFirestoreListTournamentAll().listen(
-      (event) {  
+      (event) {
         event.forEach((elementTorneo) {
           elementTorneo.reference.snapshots().forEach(
             (elementDocTorneo) {
@@ -20,13 +20,20 @@ class TournamentListController extends GetxController {
                   .snapshots()
                   .forEach(
                 (listaTorneo) {
-                  return listaTorneo.docs.forEach(
+                  List<TournamentModel> listaTorneos = [];
+                  listaTorneo.docs.forEach(
                     (torneo) {
                       Map<String, dynamic> finalData = torneo.data();
-                      finalData['id'] = torneo.id; 
+                      finalData['id'] = torneo.id;
                       listaTorneos.add(TournamentModel.fromMap(finalData));
-                      update(); 
+                      update();
                     },
+                  );
+                  tournamentList.add(
+                    TournamentListModel(
+                      id: elementTorneo.id,
+                      listaTorneo: listaTorneos,
+                    ),
                   );
                 },
               );
@@ -35,8 +42,7 @@ class TournamentListController extends GetxController {
         });
       },
     );
-     
+
     super.onReady();
   }
-
 }

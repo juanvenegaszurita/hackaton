@@ -27,9 +27,13 @@ class TournamentService {
             return TournamentModel.fromMap(finalData);
           }).toList());
 
-  Stream<TournamentModel> streamFirestoreTournament(String id) => _db
+  Stream<TournamentModel> streamFirestoreTournament(
+    String id,
+    String currentUid,
+  ) =>
+      _db
           .collection('torneosPrueba')
-          .doc(authController.firebaseUser.value!.uid)
+          .doc(currentUid)
           .collection('listaTorneo')
           .doc(id)
           .snapshots()
@@ -42,10 +46,11 @@ class TournamentService {
         },
       );
 
-  Stream<List<QueryDocumentSnapshot<Map<String, dynamic>>>> streamFirestoreListTournamentAll() => _db
-      .collection('torneosPrueba')
-      .snapshots()
-      .map((event) => event.docs.map((e) => e).toList());
+  Stream<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
+      streamFirestoreListTournamentAll() => _db
+          .collection('torneosPrueba')
+          .snapshots()
+          .map((event) => event.docs.map((e) => e).toList());
 
   Future<bool> updateTournament(
     String idTournament,

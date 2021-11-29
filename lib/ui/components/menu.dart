@@ -24,10 +24,6 @@ class Menu extends StatelessWidget {
     final List<Map<String, dynamic>> listMenuData = [
       {"title": "home.title".tr, "page": HomeUI()},
       {"title": 'login.updateProfileTitle'.tr, "page": UpdateProfileUI()},
-      {
-        "title": 'tournamentDashboard.title'.tr,
-        "page": TournamentDashboardUI()
-      },
     ];
 
     final List<Widget> listMenu = [
@@ -43,7 +39,7 @@ class Menu extends StatelessWidget {
       listMenu.add(ListTile(
         title: Text(menu['title']),
         onTap: () {
-          Get.to(menu['page'], arguments: {"id": 'ZkmOWq57WKcDs75I3qRu'});
+          Get.to(menu['page']);
         },
       ));
     });

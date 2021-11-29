@@ -23,7 +23,9 @@ class Tournament {
   }
 
   static TournamentModel createTourment(
-      List<String> listParticipantes, int nroEquipos) {
+    List<String> listParticipantes,
+    int nroEquipos,
+  ) {
     int indTmpPart = 0;
     List<CompetenceModel> competencia = [];
     int etapa = 1;
@@ -63,6 +65,25 @@ class Tournament {
           teams: teams,
         ),
       );
+      if (isFirt) {
+        etapa++;
+        List<TeamsModel> newTeams = teams
+            .map((element) => TeamsModel(
+                  id: element.id,
+                  nombre: "",
+                  participantes: [],
+                  puntos: 0,
+                  estado: TeamsModel.pendiente,
+                ))
+            .toList();
+        competencia.add(
+          new CompetenceModel(
+            id: largoEquipo,
+            etapa: "Etapa $etapa",
+            teams: newTeams,
+          ),
+        );
+      }
       largoEquipo = largoEquipo ~/ 2;
       etapa++;
     }
