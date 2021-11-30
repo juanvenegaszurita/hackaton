@@ -65,7 +65,7 @@ class Localization extends Translations {
           'settings.system': 'Sistema',
           'settings.updateProfile': 'Actualización del perfil',
           /** home */
-          'home.title': 'Jugadores',
+          'home.title': 'Administración',
           'home.namePlayer': 'Nombre Jugador',
           'home.createNewTournament': 'Crear Torneo',
           'home.newTournament': 'Nuevo Torneo',
@@ -161,7 +161,7 @@ class Localization extends Translations {
           'settings.system': 'System',
           'settings.updateProfile': 'Profile update',
           /** home */
-          'home.title': 'Players',
+          'home.title': 'Administration',
           'home.namePlayer': 'Player Name',
           'home.createNewTournament': 'New Tournament',
           'home.newTournament': 'New Tournament',

@@ -1,35 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hackaton/controllers/auth_controller.dart';
 import 'package:hackaton/controllers/private/tournament_list_controller.dart'; 
 import 'package:hackaton/ui/components/components.dart';
 import 'package:hackaton/ui/private/tournament_dashboard_ui.dart';
 import 'package:intl/intl.dart';
 
 class TournamentListUI extends StatelessWidget { 
-  final _imageLogo = (Get.isDarkMode)
-        ? 'assets/images/icons_tournament_light.png'
-        : 'assets/images/icons_tournament_dark.png';
-
+  final AuthController authController = AuthController.to;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<TournamentListController>(
       init: TournamentListController(),
-      builder: (controller) => ScaffoldGeneric(
-        isMenu: false,
-        isAppBarActions: false,
-        title: 'viewers.textTournamentTitle'.tr,
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            SizedBox(height: 10.0), 
+      builder: (controller) =>  Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[ 
             ListView(
               shrinkWrap: true,
               children: _rowsTorneo(context, controller),
             )
           ],
-        ),
-      ),
+        )
     );
   }
 
@@ -66,7 +59,7 @@ class TournamentListUI extends StatelessWidget {
                 TournamentDashboardUI(),
                 arguments: {
                   "id": item.id,
-                  "uid": controller.authController.firebaseUser.value!.uid,
+                  "uid": authController.firebaseUser.value?.uid,
                 },
               ),
             ),
