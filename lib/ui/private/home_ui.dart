@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +8,7 @@ import 'package:hackaton/ui/components/components.dart';
 import 'package:hackaton/controllers/controllers.dart';
 import 'package:hackaton/ui/components/list_card_details.dart';
 import 'package:hackaton/ui/public/public.dart';
+import 'package:hackaton/ui/private/tournament_list_ui.dart';
 
 class HomeUI extends StatelessWidget {
   final AuthController authController = AuthController.to;
