@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hackaton/constants/app_themes.dart';
 import 'package:hackaton/controllers/auth_controller.dart';
 import 'package:hackaton/controllers/private/tournament_list_controller.dart'; 
 import 'package:hackaton/ui/components/components.dart';
@@ -17,6 +18,14 @@ class TournamentListUI extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[ 
+            SizedBox(height: 20.0),
+            Center(child: Text('viewers.textTournamentTitle'.tr, 
+                                style: TextStyle(//color: AppThemes.ebonyClay,
+                                                fontSize: 25.0,
+                                                fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.center,
+                                )), 
+            SizedBox(height: 20.0),
             ListView(
               shrinkWrap: true,
               children: _rowsTorneo(context, controller),
