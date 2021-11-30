@@ -8,6 +8,7 @@ import 'package:hackaton/helpers/validator.dart';
 import 'package:hackaton/ui/components/components.dart';
 import 'package:hackaton/controllers/controllers.dart';
 import 'package:hackaton/ui/components/list_card_details.dart';
+import 'package:hackaton/ui/public/public.dart';
 
 class HomeUI extends StatelessWidget {
   final AuthController authController = AuthController.to;
@@ -94,19 +95,25 @@ class HomeUI extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    CupertinoTabBar(items: <BottomNavigationBarItem>[
-                      BottomNavigationBarItem(
-                        icon: Icon(Icons.group_add_outlined),
-                        //activeIcon: HomeUI(),
-                        tooltip: 'home.newTournament'.tr,
-                      ),
-                      BottomNavigationBarItem(
-                        icon: Icon(Icons.account_tree_outlined),
-                        tooltip: 'home.listTour'.tr,
-                      ),
-                    ])
+                    CupertinoTabBar(
+                      items: <BottomNavigationBarItem>[
+                        BottomNavigationBarItem(
+                          icon: Icon(Icons.group_add_outlined),
+                          tooltip: 'home.newTournament'.tr,
+                        ),
+                        BottomNavigationBarItem(
+                          icon: Icon(Icons.account_tree_outlined),
+                          tooltip: 'home.listTour'.tr,
+                        ),
+                      ],
+                      onTap: (int index) {
+                        if (index == 1) {
+                          Get.to(ViewersUI());
+                        }
+                      },
+                    )
                   ],
-                )
+                ),
               ],
             ),
           )),

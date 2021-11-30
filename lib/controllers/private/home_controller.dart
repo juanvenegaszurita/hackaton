@@ -11,7 +11,7 @@ class HomeController extends GetxController {
   static HomeController to = Get.find();
   TextEditingController nombreParticipanteController = TextEditingController();
   final TournamentService tournamentService = TournamentService();
-  final nroEquipos = 1.0.obs;
+  final nroEquipos = 0.0.obs;
   final division = 50.obs;
   double get currentnroEquipos => nroEquipos.value;
   int get currentDivision => division.value;
