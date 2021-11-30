@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,6 +7,7 @@ import 'package:hackaton/helpers/validator.dart';
 import 'package:hackaton/ui/components/components.dart';
 import 'package:hackaton/controllers/controllers.dart';
 import 'package:hackaton/ui/components/list_card_details.dart';
+import 'package:hackaton/ui/private/tournament_list_ui.dart';
 
 class HomeUI extends StatelessWidget {
   final AuthController authController = AuthController.to;
@@ -94,7 +94,20 @@ class HomeUI extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    CupertinoTabBar(items: <BottomNavigationBarItem>[
+                    CupertinoTabBar( 
+                      onTap: (int index) {
+                        print(index);
+                        switch (index) {
+                          case 0: //usuarios
+                            //Get.to(ViewersUI()); 
+                            break;
+                          case 1: //Lista torneo
+                            Get.to(TournamentListUI()); 
+                            break;
+                          default:
+                        } 
+                      }, 
+                      items: <BottomNavigationBarItem>[
                       BottomNavigationBarItem(
                         icon: Icon(Icons.group_add_outlined),
                         //activeIcon: HomeUI(),

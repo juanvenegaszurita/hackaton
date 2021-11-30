@@ -3,7 +3,7 @@ import 'package:hackaton/models/tournament_list_model.dart';
 import 'package:hackaton/models/tournament_model.dart';
 import 'package:hackaton/services/tournament_service.dart';
 
-class TournamentListController extends GetxController {
+class ViewerController extends GetxController {
   final TournamentService tournamentService = TournamentService();
 
   List<TournamentListModel> tournamentList = [];

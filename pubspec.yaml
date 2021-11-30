@@ -86,6 +86,7 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
-    - assets/images/icons_tournament.png
+    - assets/images/icons_tournament_light.png
+    - assets/images/icons_tournament_dark.png
     - assets/images/default.png
     - assets/images/defaultDark.png

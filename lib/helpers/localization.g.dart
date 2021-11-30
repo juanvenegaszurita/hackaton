@@ -102,7 +102,8 @@ class Localization extends Translations {
           'general.messageNoOK': 'Error en el proceso',
           'team.name': 'Nombre',
           /** viewers */
-          'viewers.textTournamentTitle': 'Torneos BancoEstado'
+          'viewers.textTournamentTitle': 'Torneos BancoEstado',
+          'viewers.textDateTitle': 'Fecha de Torneo'
         },
         'en': {
           /** login */
@@ -201,7 +202,8 @@ class Localization extends Translations {
           'accounts.questionDelete': 'Do you want to delete?',
           'team.name': 'Name',
           /** viewers */
-          'viewers.textTournamentTitle': 'Tournament BancoEstado'
+          'viewers.textTournamentTitle': 'Tournament BancoEstado',
+          'viewers.textDateTitle': 'Tournament date'
         },
       };
 }
