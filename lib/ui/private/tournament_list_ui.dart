@@ -1,38 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hackaton/constants/app_themes.dart';
 import 'package:hackaton/controllers/auth_controller.dart';
-import 'package:hackaton/controllers/private/tournament_list_controller.dart'; 
-import 'package:hackaton/ui/components/components.dart';
+import 'package:hackaton/controllers/private/tournament_list_controller.dart';
 import 'package:hackaton/ui/private/tournament_dashboard_ui.dart';
 import 'package:intl/intl.dart';
 
-class TournamentListUI extends StatelessWidget { 
+class TournamentListUI extends StatelessWidget {
   final AuthController authController = AuthController.to;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<TournamentListController>(
-      init: TournamentListController(),
-      builder: (controller) =>  Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[ 
-            SizedBox(height: 20.0),
-            Center(child: Text('viewers.textTournamentTitle'.tr, 
-                                style: TextStyle(//color: AppThemes.ebonyClay,
-                                                fontSize: 25.0,
-                                                fontWeight: FontWeight.bold),
-                                textAlign: TextAlign.center,
-                                )), 
-            SizedBox(height: 20.0),
-            ListView(
-              shrinkWrap: true,
-              children: _rowsTorneo(context, controller),
-            )
-          ],
-        )
-    );
+        init: TournamentListController(),
+        builder: (controller) => Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                SizedBox(height: 20.0),
+                Center(
+                    child: Text(
+                  'viewers.textTournamentTitle'.tr,
+                  style: TextStyle(
+                      //color: AppThemes.ebonyClay,
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                )),
+                SizedBox(height: 20.0),
+                ListView(
+                  shrinkWrap: true,
+                  children: _rowsTorneo(context, controller),
+                )
+              ],
+            ));
   }
 
   List<Widget> _rowsTorneo(
@@ -40,9 +40,8 @@ class TournamentListUI extends StatelessWidget {
     TournamentListController controller,
   ) {
     List<Widget> rowsTorneo = [];
- 
+
     controller.currentListTournament.forEach((item) {
- 
       DateTime fechaDT = DateTime.fromMicrosecondsSinceEpoch(
         item.fecha.microsecondsSinceEpoch,
       );
@@ -54,7 +53,8 @@ class TournamentListUI extends StatelessWidget {
           children: <Widget>[
             ListTile(
               title: Text(item.nombreJuego),
-              subtitle: Text('viewers.textDateTitle'.tr + ' ' + formatted.toString()),
+              subtitle:
+                  Text('viewers.textDateTitle'.tr + ' ' + formatted.toString()),
               leading: ConstrainedBox(
                   constraints: BoxConstraints(
                     minWidth: 44,
@@ -76,10 +76,8 @@ class TournamentListUI extends StatelessWidget {
           ],
         ),
       );
-    
-    }); 
-    
+    });
+
     return rowsTorneo;
   }
-
 }
