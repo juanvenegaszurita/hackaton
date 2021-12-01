@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:hackaton/controllers/auth_controller.dart';
 import 'package:hackaton/helpers/tournament.dart';
 import 'package:get/get.dart';
 import 'package:hackaton/services/tournament_service.dart';
+import 'package:hackaton/ui/private/private.dart';
 
 class HomeController extends GetxController {
   static HomeController to = Get.find();
   TextEditingController nombreParticipanteController = TextEditingController();
   final TournamentService tournamentService = TournamentService();
-  final nroEquipos = 1.0.obs;
+  final nroEquipos = 0.obs;
   final division = 50.obs;
-  double get currentnroEquipos => nroEquipos.value;
+  int get currentnroEquipos => nroEquipos.value;
   int get currentDivision => division.value;
 
   final participantes = RxList([]).obs;
@@ -27,7 +29,7 @@ class HomeController extends GetxController {
     update(["home"]);
   }
 
-  createNewTournament() {
+  createNewTournament() async {
     if ((currentParticipantes.length > 2) &&
         (currentParticipantes.length > currentnroEquipos.toInt())) {
       TournamentService tor = TournamentService();
@@ -36,12 +38,20 @@ class HomeController extends GetxController {
       currentParticipantes.forEach((element) {
         listParticipantes.add(element);
       });
-      tor.newTournament(helperTournament.createTourment(
-          listParticipantes, currentnroEquipos.toInt()));
+
+      String idTournamet = await tor.newTournament(helperTournament
+          .createTourment(listParticipantes, currentnroEquipos.toInt()));
+      Get.to(
+        TournamentDashboardUI(),
+        arguments: {
+          "id": idTournamet,
+          "uId": AuthController.to.firestoreUser.value?.uid
+        },
+      );
     }
   }
 
-  setNroEquipos(dynamic value) {
+  setNroEquipos(int value) {
     nroEquipos.value = value;
     if (currentnroEquipos > 4) {
       division.value = 25;
