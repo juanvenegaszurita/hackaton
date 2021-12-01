@@ -29,14 +29,17 @@ class GraphCompetenceTournament extends StatelessWidget {
       if ((keyLN + 1) < nodeTeams.length) {
         List<Node> siguiente = nodeTeams[(keyLN + 1)];
         int aunmento = 0;
-        if (siguiente.length > 0) {
-          /* siguiente = new List.from(siguiente.reversed);
-          listaNodo = new List.from(listaNodo.reversed); */
+        if (siguiente.length > nodeTeams[keyLN].length) {
           listaNodo.asMap().forEach((keyN, nodo) {
             graph.addEdge(nodo, siguiente[aunmento]);
             graph.addEdge(nodo, siguiente[aunmento + 1]);
 
             aunmento = aunmento + 2;
+          });
+        } else {
+          listaNodo.asMap().forEach((keyN, nodo) {
+            graph.addEdge(nodo, siguiente[keyN]);
+            aunmento = aunmento++;
           });
         }
       }

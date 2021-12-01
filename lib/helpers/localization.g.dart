@@ -87,6 +87,9 @@ class Localization extends Translations {
           'tournamentDashboard.winner': 'Ganador',
           'tournamentDashboard.state': 'Estado',
           'tournamentDashboard.stateConditions': 'Debe estar en estado',
+          'tournamentDashboard.noCompetitor': 'sin competidor',
+          'tournamentDashboard.selectParticipant':
+              'Debe seleccionar 1 participante',
           'general.total': 'Total',
           'general.selectAll': 'Seleccionar Todo',
           'general.selectowner': 'Seleccionar Propietario',
@@ -184,6 +187,9 @@ class Localization extends Translations {
           'tournamentDashboard.winner': 'Winner',
           'tournamentDashboard.state': 'State',
           'tournamentDashboard.stateConditions': 'must be in state',
+          'tournamentDashboard.noCompetitor': 'No competitor',
+          'tournamentDashboard.selectParticipant':
+              'You must select 1 participant',
           'general.total': 'Total',
           'general.selectAll': 'Select all',
           'general.selectowner': 'Select owner',

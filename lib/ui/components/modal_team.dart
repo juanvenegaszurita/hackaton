@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:hackaton/controllers/private/tournament_dashboard_controller.dart';
 import 'package:hackaton/helpers/validator.dart';
@@ -30,8 +31,8 @@ class ModalTeam {
               PrimaryButton(
                 labelText: 'tournamentDashboard.winner'.tr,
                 onPressed: () async {
-                  await onPressedWin.call();
-                  Navigator.of(context).pop();
+                  var res = await onPressedWin.call();
+                  if (res) Navigator.of(context).pop();
                 },
               ),
             TextButton(
@@ -112,56 +113,73 @@ class ModalTeam {
     } else if (team.estado == TeamsModel.activo) {
       controller.nombreTeamController.text = team.nombre;
       controller.puntosTeamController.text = team.puntos.toString();
+      controller.setErrorDialog('');
       ModalTeam.dialog(
         context: context,
         title: etapa,
-        content: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text("${'tournamentDashboard.state'.tr}: " +
-                team.getEstados[team.estado]),
-            FormVerticalSpace(),
-            FormInputFieldWithIcon(
-              controller: controller.nombreTeamController,
-              iconPrefix: Icons.app_registration,
-              labelText: 'tournamentDashboard.name'.tr,
-              validator: Validator().notEmpty,
-              keyboardType: TextInputType.text,
-              onChanged: (value) => null,
-              onSaved: (value) => controller.nombreTeamController.text = value!,
-            ),
-            FormInputFieldWithIcon(
-              controller: controller.puntosTeamController,
-              iconPrefix: Icons.app_registration,
-              labelText: 'tournamentDashboard.points'.tr,
-              validator: Validator().number,
-              keyboardType: TextInputType.number,
-              onChanged: (value) => null,
-              onSaved: (value) => controller.puntosTeamController.text = value!,
-            ),
-            FormVerticalSpace(),
-            Center(
-              child: Text(
-                'tournamentDashboard.participants'.tr,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
+        content: GetBuilder<TournamentDashboardController>(
+          init: TournamentDashboardController(),
+          id: "dialogParticipante",
+          builder: (controller) => SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text("${'tournamentDashboard.state'.tr}: " +
+                    team.getEstados[team.estado]),
+                FormVerticalSpace(),
+                FormInputFieldWithIcon(
+                  controller: controller.nombreTeamController,
+                  iconPrefix: Icons.app_registration,
+                  labelText: 'tournamentDashboard.name'.tr,
+                  validator: Validator().notEmpty,
+                  keyboardType: TextInputType.text,
+                  onChanged: (value) => null,
+                  onSaved: (value) =>
+                      controller.nombreTeamController.text = value!,
                 ),
-              ),
-            ),
-            FormVerticalSpace(),
-            ...team.participantes
-                .map(
-                  (e) => Text(
-                    "- ${e.nombre}",
-                    /* style: TextStyle(
-                          color: Colors.white,
-                        ), */
+                FormInputFieldWithIcon(
+                  controller: controller.puntosTeamController,
+                  iconPrefix: Icons.app_registration,
+                  labelText: 'tournamentDashboard.points'.tr,
+                  validator: Validator().number,
+                  keyboardType: TextInputType.number,
+                  onChanged: (value) => null,
+                  onSaved: (value) =>
+                      controller.puntosTeamController.text = value!,
+                ),
+                FormVerticalSpace(),
+                Center(
+                  child: Text(
+                    'tournamentDashboard.participants'.tr,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                )
-                .toList(),
-            FormVerticalSpace(),
-          ],
+                ),
+                FormVerticalSpace(),
+                ...team.participantes
+                    .map(
+                      (e) => RadioListTile(
+                        title: Text(e.nombre),
+                        value: e.nombre,
+                        groupValue: team.participanteGanador,
+                        onChanged: (String? value) {
+                          team.setParticipanteGanador(value!);
+                          controller.updateDialogParticipante();
+                        },
+                      ),
+                    )
+                    .toList(),
+                FormVerticalSpace(),
+                Text(
+                  controller.currentErrorDialog,
+                  style: TextStyle(color: Colors.red),
+                ),
+              ],
+            ),
+          ),
         ),
         onPressed: () async {
           competencias[indCom].teams[indTeam] = TeamsModel(
@@ -170,6 +188,7 @@ class ModalTeam {
             participantes: team.participantes,
             puntos: int.parse(controller.puntosTeamController.text),
             estado: team.estado,
+            participanteGanador: team.participanteGanador,
           );
           await controller.tournamentService.updateTournament(
             controller.currentId,
@@ -177,14 +196,20 @@ class ModalTeam {
           );
         },
         onPressedWin: () async {
-          controller.tournamentService.updateTournament(
-            controller.currentId,
-            controller.winTournament(
-              team,
-              indCom,
-              indTeam,
-            ),
+          TournamentModel? winTournament = controller.winTournament(
+            team,
+            indCom,
+            indTeam,
           );
+          if (winTournament != null) {
+            controller.tournamentService.updateTournament(
+              controller.currentId,
+              winTournament,
+            );
+            return true;
+          } else {
+            return false;
+          }
         },
       );
     } else {

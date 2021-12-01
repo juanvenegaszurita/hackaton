@@ -7,6 +7,7 @@ class TeamsModel {
   final List<CompetitorModel> participantes;
   final int puntos;
   final int estado;
+  String participanteGanador;
 
   List<String> get getEstados => [
         "Pendiente",
@@ -21,12 +22,17 @@ class TeamsModel {
   static int perdedor = 3;
   static int ganadorCompetencia = 4;
 
+  setParticipanteGanador(String ganador) {
+    this.participanteGanador = ganador;
+  }
+
   TeamsModel({
     required this.id,
     required this.nombre,
     required this.participantes,
     required this.puntos,
     required this.estado,
+    this.participanteGanador = "",
   });
 
   factory TeamsModel.fromMap(Map data) {
@@ -42,6 +48,7 @@ class TeamsModel {
       participantes: participantes,
       puntos: data['puntos'] ?? 0,
       estado: data['estado'] ?? 0,
+      participanteGanador: data['participanteGanador'] ?? '',
     );
   }
 
@@ -50,6 +57,7 @@ class TeamsModel {
         "participantes": participantes.map((e) => e.nombre),
         "puntos": puntos,
         "estado": estado,
+        "participanteGanador": participanteGanador,
       };
 
   @override
@@ -60,6 +68,7 @@ class TeamsModel {
       "participantes": participantes.toString(),
       "puntos": puntos,
       "estado": estado,
+      "participanteGanador": participanteGanador,
     });
   }
 }
