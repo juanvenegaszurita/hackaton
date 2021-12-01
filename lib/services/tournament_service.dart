@@ -72,21 +72,21 @@ class TournamentService {
     }
   }
 
-  Future<bool> newTournament(
+  Future<String> newTournament(
     TournamentModel tournamentModel,
   ) async {
     showLoadingIndicator();
     try {
-      await _db
+      DocumentReference<Map<String, dynamic>> newt = await _db
           .collection('torneosPrueba')
           .doc(authController.firebaseUser.value!.uid)
           .collection('listaTorneo')
           .add(tournamentModel.toJson());
       hideLoadingIndicator();
-      return true;
+      return newt.id;
     } catch (e) {
       hideLoadingIndicator();
-      return false;
+      return "";
     }
   }
 }
