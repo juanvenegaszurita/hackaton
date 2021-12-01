@@ -22,7 +22,6 @@ class ListCardDetails extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(24),
                     ),
-                    color: Colors.white,
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 24.0, vertical: 9),
