@@ -1,10 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hackaton/helpers/tournament.dart';
-import 'package:hackaton/models/models.dart';
 import 'package:get/get.dart';
-import 'package:hackaton/models/competitor_models.dart';
-import 'package:hackaton/models/tournament_model.dart';
 import 'package:hackaton/services/tournament_service.dart';
 
 class HomeController extends GetxController {

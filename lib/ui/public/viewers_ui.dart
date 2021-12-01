@@ -6,9 +6,6 @@ import 'package:hackaton/ui/private/tournament_dashboard_ui.dart';
 import 'package:intl/intl.dart';
 
 class ViewersUI extends StatelessWidget { 
-  final _imageLogo = (Get.isDarkMode)
-        ? 'assets/images/icons_tournament_light.png'
-        : 'assets/images/icons_tournament_dark.png';
 
   @override
   Widget build(BuildContext context) {
