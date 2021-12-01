@@ -8,12 +8,11 @@ import 'package:hackaton/ui/components/components.dart';
 class TournamentDashboardUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    bool isLogin = (AuthController.to.firebaseUser.value?.uid != null);
     return GetBuilder<TournamentDashboardController>(
       init: TournamentDashboardController(),
       builder: (controller) => ScaffoldGeneric(
-        isMenu: isLogin,
-        isAppBarActions: isLogin,
+        isMenu: false,
+        isAppBarActions: false,
         title: 'tournamentDashboard.title'.tr,
         body: Column(
           mainAxisSize: MainAxisSize.min,
