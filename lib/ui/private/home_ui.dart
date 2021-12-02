@@ -7,10 +7,10 @@ import 'package:hackaton/ui/components/components.dart';
 import 'package:hackaton/ui/private/tournament_list_ui.dart';
 import 'package:hackaton/ui/private/tournament_new_ui.dart';
 
-class HomeUI extends StatelessWidget {
+class HomeUI extends GetResponsiveView {
   final AuthController authController = AuthController.to;
   @override
-  Widget build(BuildContext context) {
+  Widget builder() {
     return GetBuilder<HomeController>(
       id: "home",
       init: HomeController(),
@@ -26,19 +26,29 @@ class HomeUI extends StatelessWidget {
                 children: [
                   Container(
                     constraints: BoxConstraints(
-                      maxHeight: 1000,
+                      maxHeight: this.screen.height - 150,
                     ),
                     child: TabBarView(
-                      children: [TournamentListUI(), TournamentNewUI()],
+                      children: [
+                        SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: TournamentListUI(),
+                        ),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: TournamentNewUI(),
+                        ),
+                      ],
                     ),
                   ),
                   Container(
                     child: TabBar(
-                      labelColor: Theme.of(context).appBarTheme.backgroundColor,
+                      labelColor:
+                          Theme.of(Get.context!).appBarTheme.backgroundColor,
                       unselectedLabelColor:
-                          Theme.of(context).textTheme.button!.color!,
+                          Theme.of(Get.context!).textTheme.button!.color!,
                       indicatorColor:
-                          Theme.of(context).appBarTheme.backgroundColor,
+                          Theme.of(Get.context!).appBarTheme.backgroundColor,
                       tabs: [
                         Tab(
                             text: 'home.listTour'.tr,
