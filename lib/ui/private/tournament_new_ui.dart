@@ -57,6 +57,7 @@ class TournamentNewUI extends GetResponsiveView {
                     md: 2,
                     lg: 2,
                     xl: 2,
+                    paddingTop: 2.5,
                     children: [
                       FormInputFieldWithIcon(
                         controller: controller.nombreParticipanteController,
