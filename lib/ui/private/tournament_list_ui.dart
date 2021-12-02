@@ -52,9 +52,12 @@ class TournamentListUI extends StatelessWidget {
         Column(
           children: <Widget>[
             ListTile(
-              title: Text(item.nombreJuego),
-              subtitle:
-                  Text('viewers.textDateTitle'.tr + ' ' + formatted.toString()),
+              title: Text(item.nombre),
+              subtitle: Text(
+                  'Juego: ' + item.nombreJuego + '\n' + 'viewers.textDateTitle'.tr 
+                  + ' ' + formatted.toString(),
+                  textAlign: TextAlign.left,
+                  style: TextStyle( fontSize: 12),),
               leading: ConstrainedBox(
                   constraints: BoxConstraints(
                     minWidth: 44,
