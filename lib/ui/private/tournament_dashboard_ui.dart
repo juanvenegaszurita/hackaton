@@ -156,24 +156,44 @@ class TournamentDashboardUI extends StatelessWidget {
             ),
           ],
         ),
-        FormVerticalSpace(),
-        GridResponsive(
-          xl: 1,
-          lg: 1,
-          md: 1,
-          sm: 1,
-          xs: 1,
-          children: [
-            PrimaryButton(
-              labelText: 'tournamentDashboard.saved'.tr,
-              onPressed: () async =>
-                  await controller.tournamentService.updateTournament(
-                controller.currentId,
-                controller.getTournamentModel(),
+        if (isLogin) FormVerticalSpace(),
+        if (isLogin)
+          GridResponsive(
+            xl: 1,
+            lg: 1,
+            md: 1,
+            sm: 1,
+            xs: 1,
+            children: [
+              PrimaryButton(
+                labelText: 'tournamentDashboard.saved'.tr,
+                onPressed: () async =>
+                    await controller.tournamentService.updateTournament(
+                  controller.currentId,
+                  controller.getTournamentModel(),
+                ),
               ),
-            ),
-          ],
-        )
+            ],
+          ),
+        if (isLogin) FormVerticalSpace(),
+        if (isLogin)
+          GridResponsive(
+            xl: 1,
+            lg: 1,
+            md: 1,
+            sm: 1,
+            xs: 1,
+            children: [
+              PrimaryButton(
+                  labelText: 'tournamentDashboard.delete'.tr,
+                  onPressed: () async {
+                    await controller.tournamentService.deleteTournament(
+                      controller.currentId,
+                    );
+                    Get.back();
+                  }),
+            ],
+          ),
       ],
     );
   }

@@ -72,6 +72,23 @@ class TournamentService {
     }
   }
 
+  Future<bool> deleteTournament(String idTournament) async {
+    showLoadingIndicator();
+    try {
+      await _db
+          .collection('torneosPrueba')
+          .doc(authController.firebaseUser.value!.uid)
+          .collection('listaTorneo')
+          .doc(idTournament)
+          .delete();
+      hideLoadingIndicator();
+      return true;
+    } catch (e) {
+      hideLoadingIndicator();
+      return false;
+    }
+  }
+
   Future<String> newTournament(
     TournamentModel tournamentModel,
   ) async {
