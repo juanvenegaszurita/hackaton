@@ -52,7 +52,7 @@ class TournamentListUI extends StatelessWidget {
         Column(
           children: <Widget>[
             ListTile(
-              title: Text(item.nombre),
+              title: Text(item.nombre, style: TextStyle(fontWeight: FontWeight.bold),),
               subtitle: Text(
                   'Juego: ' + item.nombreJuego + '\n' + 'viewers.textDateTitle'.tr 
                   + ' ' + formatted.toString(),
@@ -65,8 +65,8 @@ class TournamentListUI extends StatelessWidget {
                     maxWidth: 64,
                     maxHeight: 64,
                   ),
-                  child: Icon(Icons.account_tree_outlined)),
-              trailing: Icon(Icons.keyboard_arrow_right),
+                  child: Icon(Icons.account_tree_outlined, color: Colors.orange)),
+              trailing: Icon(Icons.keyboard_arrow_right, color: Colors.orange),
               onTap: () => Get.to(
                 TournamentDashboardUI(),
                 arguments: {
