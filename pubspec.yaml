@@ -90,5 +90,11 @@ flutter:
     - assets/images/icons_tournament_light.png
     - assets/images/icons_tournament_dark.png
     - assets/images/default.png
-    - assets/images/defaultDark.png 
-    - assets/images/left-banner.png 
+    - assets/images/defaultDark.png
+    - assets/images/banner-bg-2.png
+    - assets/images/left-banner.png
+    - assets/images/right-banner.png
+    - assets/images/players-week-bg.png
+    - assets/images/preloader.gif
+    - assets/images/footer-bg.png
+    - assets/images/splash.png

@@ -24,30 +24,47 @@ class HomeController extends GetxController {
   }
 
   removePlayer(participante) {
-    print(participante);
     currentParticipantes.remove(participante);
     update(["home"]);
   }
 
   createNewTournament() async {
-    if ((currentParticipantes.length > 2) &&
-        (currentParticipantes.length > currentnroEquipos.toInt())) {
-      TournamentService tor = TournamentService();
-      Tournament helperTournament = Tournament();
-      List<String> listParticipantes = [];
-      currentParticipantes.forEach((element) {
-        listParticipantes.add(element);
-      });
+    if (currentnroEquipos < 2) {
+      Get.snackbar('home.setError'.tr, 'home.setMinimunTeams'.tr,
+          snackPosition: SnackPosition.TOP,
+          duration: Duration(seconds: 7),
+          backgroundColor: Get.theme.snackBarTheme.backgroundColor,
+          colorText: Get.theme.snackBarTheme.actionTextColor);
+    } else if (currentParticipantes.length < 2) {
+      Get.snackbar('home.setError'.tr, 'home.setMinimunPlayers'.tr,
+          snackPosition: SnackPosition.TOP,
+          duration: Duration(seconds: 7),
+          backgroundColor: Get.theme.snackBarTheme.backgroundColor,
+          colorText: Get.theme.snackBarTheme.actionTextColor);
+    } else if (currentnroEquipos > currentParticipantes.length) {
+      Get.snackbar('home.setError'.tr, 'home.maxNumTeams'.tr,
+          snackPosition: SnackPosition.TOP,
+          duration: Duration(seconds: 7),
+          backgroundColor: Get.theme.snackBarTheme.backgroundColor,
+          colorText: Get.theme.snackBarTheme.actionTextColor);
+    } else {
+      {
+        TournamentService tor = TournamentService();
+        List<String> listParticipantes = [];
+        currentParticipantes.forEach((element) {
+          listParticipantes.add(element);
+        });
 
-      String idTournamet = await tor.newTournament(helperTournament
-          .createTourment(listParticipantes, currentnroEquipos.toInt()));
-      Get.to(
-        TournamentDashboardUI(),
-        arguments: {
-          "id": idTournamet,
-          "uId": AuthController.to.firestoreUser.value?.uid
-        },
-      );
+        String idTournamet = await tor.newTournament(Tournament.createTourment(
+            listParticipantes, currentnroEquipos.toInt()));
+        Get.to(
+          TournamentDashboardUI(),
+          arguments: {
+            "id": idTournamet,
+            "uId": AuthController.to.firestoreUser.value?.uid
+          },
+        );
+      }
     }
   }
 

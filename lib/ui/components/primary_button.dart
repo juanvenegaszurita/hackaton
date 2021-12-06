@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
 
-/*
-PrimaryButton(
-                labelText: 'UPDATE',
-                onPressed: () => print('Submit'),
-              ),
-*/
-
 class PrimaryButton extends StatelessWidget {
   PrimaryButton({required this.labelText, required this.onPressed});
 
@@ -19,7 +12,7 @@ class PrimaryButton extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         labelText.toUpperCase(),
-        style: TextStyle(fontWeight: FontWeight.bold),
+        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
       ),
     );
   }

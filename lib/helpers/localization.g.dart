@@ -71,6 +71,13 @@ class Localization extends Translations {
           'home.newTournament': 'Nuevo Torneo',
           'home.listTour': 'Lista de Torneos',
           'home.setPlayers': 'establecer jugadores',
+          'home.setMinimunPlayers':
+              'Debe indicar al menos un minimo de dos(2) jugadores.',
+          'home.setMinimunTeams':
+              'Debe indicar al menos un minimo de dos(2) equipos.',
+          'home.maxNumTeams':
+              'La cantidad de equipos no puede ser superior al numero de jugadores.',
+          'home.setError': 'Error',
           /** tournamentDashboard */
           'tournamentDashboard.title': 'Tablero de torneos',
           'tournamentDashboard.name': 'Nombre',

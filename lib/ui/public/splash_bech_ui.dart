@@ -7,7 +7,7 @@ class SplashBechUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) { 
     return AnimatedSplashScreen(
-            splash: Image.asset("assets/images/left-banner.png", ) ,
+            splash: Image.asset("assets/images/splash.png", ) ,
             splashIconSize: 380.0, 
             nextScreen: ViewersUI(),
             splashTransition: SplashTransition.sizeTransition,

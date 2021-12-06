@@ -68,18 +68,31 @@ class ScaffoldGeneric extends GetResponsiveView {
           ),
         ),
       ),
-      body: Center(
-        child: Container(
-          alignment: Alignment.topCenter,
-          decoration: border
-              ? BoxDecoration(border: Border.all(color: Colors.black))
-              : BoxDecoration(),
-          width: width,
-          child: Padding(
-            padding: EdgeInsets.all(10.0),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: body,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/footer-bg.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Center(
+          child: Container(
+            alignment: Alignment.topCenter,
+            decoration: border
+                ? BoxDecoration(border: Border.all(color: Colors.black))
+                : BoxDecoration(
+                    /*  image: DecorationImage(
+                      image: AssetImage("assets/images/banner-bg-2.png"),
+                      fit: BoxFit.cover,
+                    ), */
+                    ),
+            width: width,
+            child: Padding(
+              padding: EdgeInsets.all(10.0),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: body,
+              ),
             ),
           ),
         ),

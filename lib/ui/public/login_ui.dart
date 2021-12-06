@@ -64,9 +64,9 @@ class LoginUi extends GetResponsiveView {
                       }),
                   FormVerticalSpace(),
                   PrimaryButton(
-                      labelText: 'login.viewersButton'.tr,
-                      onPressed: () => Get.to(ViewersUI()),
-                      ),
+                    labelText: 'login.viewersButton'.tr,
+                    onPressed: () => Get.to(ViewersUI()),
+                  ),
                   FormVerticalSpace(),
                   LabelButton(
                     labelText: 'login.resetPasswordLabelButton'.tr,

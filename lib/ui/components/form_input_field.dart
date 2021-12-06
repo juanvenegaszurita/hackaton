@@ -1,17 +1,5 @@
 import 'package:flutter/material.dart';
 
-/*
-FormInputField(
-                controller: _url,
-                labelText: 'Post URL',
-                validator: Validator.notEmpty,
-                keyboardType: TextInputType.multiline,
-                minLines: 3,
-                onChanged: (value) => print('changed'),
-                onSaved: (value) => print('implement me'),
-              ),
-*/
-
 class FormInputField extends StatelessWidget {
   FormInputField({
     required this.controller,

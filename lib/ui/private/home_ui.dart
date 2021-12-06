@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hackaton/constants/constants.dart';
 import 'package:hackaton/controllers/private/home_controller.dart';
 import 'package:hackaton/controllers/controllers.dart';
 import 'package:hackaton/ui/components/components.dart';
@@ -40,12 +41,10 @@ class HomeUI extends GetResponsiveView {
                   ),
                   Container(
                     child: TabBar(
-                      labelColor:
-                          Theme.of(Get.context!).appBarTheme.backgroundColor,
+                      labelColor: AppThemes.orange,
                       unselectedLabelColor:
                           Theme.of(Get.context!).textTheme.button!.color!,
-                      indicatorColor:
-                          Theme.of(Get.context!).appBarTheme.backgroundColor,
+                      indicatorColor: AppThemes.orange,
                       tabs: [
                         Tab(
                             text: 'home.listTour'.tr,

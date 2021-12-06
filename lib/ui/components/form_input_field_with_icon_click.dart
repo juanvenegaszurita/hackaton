@@ -1,16 +1,5 @@
 import 'package:flutter/material.dart';
-/*
-FormInputFieldWithIconClick(
-                controller: _email,
-                iconPrefix: Icons.link,
-                labelText: 'Post URL',
-                validator: Validator.notEmpty,
-                keyboardType: TextInputType.multiline,
-                minLines: 3,
-                onChanged: (value) => print('changed'),
-                onSaved: (value) => print('implement me'),
-              ),
-*/
+import 'package:hackaton/constants/constants.dart';
 
 class FormInputFieldWithIconClick extends StatelessWidget {
   FormInputFieldWithIconClick({
@@ -26,6 +15,7 @@ class FormInputFieldWithIconClick extends StatelessWidget {
     this.paddingTop = 13,
     this.paddingLeft = 10,
     this.paddingRight = 10,
+    this.enable = true,
   });
 
   final IconData? iconPrefix;
@@ -40,6 +30,7 @@ class FormInputFieldWithIconClick extends StatelessWidget {
   final double paddingTop;
   final double paddingLeft;
   final double paddingRight;
+  final bool enable;
 
   @override
   Widget build(BuildContext context) {
@@ -48,12 +39,9 @@ class FormInputFieldWithIconClick extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).inputDecorationTheme.fillColor,
-          border: Border.all(
-              color: Theme.of(context)
-                  .inputDecorationTheme
-                  .enabledBorder!
-                  .borderSide
-                  .color),
+          border: enable
+              ? Border.all(color: AppThemes.orange)
+              : Border.all(color: AppThemes.orange.withAlpha(50)),
           borderRadius: BorderRadius.circular(8),
         ),
         margin: EdgeInsets.only(
@@ -74,11 +62,7 @@ class FormInputFieldWithIconClick extends StatelessWidget {
           children: [
             Icon(
               iconPrefix,
-              color: Theme.of(context)
-                  .inputDecorationTheme
-                  .enabledBorder!
-                  .borderSide
-                  .color,
+              color: enable ? Colors.grey : Colors.grey.withAlpha(90),
             ),
             Text(
               labelTextPrefix,
