@@ -15,6 +15,8 @@ import 'package:hackaton/helpers/helpers.dart';
 import 'package:flutter/services.dart';
 import 'dart:async';
 
+import 'package:hackaton/ui/public/splash_bech_ui.dart';
+
 class AuthController extends GetxController {
   static AuthController to = Get.find();
 
@@ -56,7 +58,8 @@ class AuthController extends GetxController {
 
     if (_firebaseUser == null) {
       print('Send to signin');
-      Get.offAll(LoginUi());
+      //Get.offAll(LoginUi());
+      Get.offAll(SplashBechUI());
     } else {
       Get.offAll(HomeUI());
     }

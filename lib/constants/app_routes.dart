@@ -8,8 +8,8 @@ import 'package:hackaton/ui/private/private.dart';
 class AppRoutes {
   AppRoutes._();
   static final routes = [
-    GetPage(name: '/', page: () => SplashUI()),
-    GetPage(name: '/login', page: () => LoginUi()),
+    GetPage(name: '/', page: () => SplashBechUI()),
+    //GetPage(name: '/login', page: () => LoginUi()),
     GetPage(name: '/signup', page: () => SignUpUI()),
     GetPage(name: '/home', page: () => HomeUI()),
     GetPage(name: '/settings', page: () => SettingsUI()),

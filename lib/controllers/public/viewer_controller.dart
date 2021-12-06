@@ -2,14 +2,15 @@ import 'package:get/get.dart';
 import 'package:hackaton/models/tournament_list_model.dart';
 import 'package:hackaton/models/tournament_model.dart';
 import 'package:hackaton/services/tournament_service.dart';
+import 'package:hackaton/ui/components/loading.dart';
 
 class ViewerController extends GetxController {
   final TournamentService tournamentService = TournamentService();
-
   List<TournamentListModel> tournamentList = [];
 
   @override
   void onReady() async {
+    showLoadingIndicator();
     tournamentService.streamFirestoreListTournamentAll().listen(
       (event) {
         event.forEach((elementTorneo) {
@@ -44,5 +45,6 @@ class ViewerController extends GetxController {
     );
 
     super.onReady();
+    hideLoadingIndicator();
   }
 }
