@@ -1,11 +1,4 @@
 import 'package:flutter/material.dart';
-/*
-DropdownPicker(
-                menuOptions: list of dropdown options in key value pairs,
-                selectedOption: menu option string value,
-                onChanged: (value) => print('changed'),
-              ),
-*/
 
 class DropdownPicker extends StatelessWidget {
   DropdownPicker({

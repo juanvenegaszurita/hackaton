@@ -24,7 +24,6 @@ class HomeController extends GetxController {
   }
 
   removePlayer(participante) {
-    print(participante);
     currentParticipantes.remove(participante);
     update(["home"]);
   }
@@ -51,14 +50,13 @@ class HomeController extends GetxController {
     } else {
       {
         TournamentService tor = TournamentService();
-        Tournament helperTournament = Tournament();
         List<String> listParticipantes = [];
         currentParticipantes.forEach((element) {
           listParticipantes.add(element);
         });
 
-        String idTournamet = await tor.newTournament(helperTournament
-            .createTourment(listParticipantes, currentnroEquipos.toInt()));
+        String idTournamet = await tor.newTournament(Tournament.createTourment(
+            listParticipantes, currentnroEquipos.toInt()));
         Get.to(
           TournamentDashboardUI(),
           arguments: {

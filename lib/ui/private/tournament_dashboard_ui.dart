@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hackaton/constants/constants.dart';
 import 'package:hackaton/controllers/private/tournament_dashboard_controller.dart';
 import 'package:hackaton/controllers/auth_controller.dart';
 import 'package:hackaton/helpers/validator.dart';
@@ -26,11 +27,10 @@ class TournamentDashboardUI extends StatelessWidget {
                 children: [
                   Container(
                     child: TabBar(
-                      labelColor: Theme.of(context).appBarTheme.backgroundColor,
+                      labelColor: AppThemes.orange,
                       unselectedLabelColor:
                           Theme.of(context).textTheme.button!.color!,
-                      indicatorColor:
-                          Theme.of(context).appBarTheme.backgroundColor,
+                      indicatorColor: AppThemes.orange,
                       tabs: [
                         Tab(text: 'tournamentDashboard.tabGraphic'.tr),
                         Tab(text: 'tournamentDashboard.tabList'.tr),
@@ -103,12 +103,14 @@ class TournamentDashboardUI extends StatelessWidget {
           paddingTop: 2.5,
           children: [
             FormInputFieldWithIconClick(
+              enable: isLogin,
               onTap: () => isLogin ? _selectDate(context, controller) : null,
               iconPrefix: Icons.calendar_today,
               labelTextPrefix: 'tournamentDashboard.date'.tr,
               labelText: controller.currentFecha,
             ),
             FormInputFieldWithIconClick(
+              enable: isLogin,
               onTap: () => isLogin ? _selectTime(context, controller) : null,
               iconPrefix: Icons.timer,
               labelTextPrefix: 'tournamentDashboard.hour'.tr,

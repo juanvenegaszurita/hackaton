@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hackaton/models/models.dart';
 
 class Tournament {
-  List<List<TeamsModel>> createTeams(int grupo) {
+  static List<List<TeamsModel>> createTeams(int grupo) {
     List<List<TeamsModel>> lista = [];
 
     while (grupo >= 1) {
@@ -22,7 +22,7 @@ class Tournament {
     return lista;
   }
 
-  TournamentModel createTourment(
+  static TournamentModel createTourment(
       List<String> listParticipantes, int nroEquipos) {
     int indTmpPart = 0;
     List<CompetenceModel> competencia = [];
@@ -99,5 +99,12 @@ class Tournament {
           .toList(),
       competencia: competencia,
     );
+  }
+
+  static convertTimestamp(String fecha, String hora) {
+    String horaFinal =
+        hora.split(":").map((h) => h.length > 1 ? h : "0$h").join(":");
+    DateTime fechaFinal = DateTime.parse("$fecha $horaFinal:00.000");
+    return Timestamp.fromDate(fechaFinal);
   }
 }

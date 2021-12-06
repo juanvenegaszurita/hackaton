@@ -1,7 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart' show Timestamp;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hackaton/controllers/auth_controller.dart';
+import 'package:hackaton/helpers/tournament.dart';
 import 'package:hackaton/models/models.dart';
 import 'package:hackaton/models/tournament_model.dart';
 import 'package:hackaton/services/tournament_service.dart';
@@ -92,12 +92,10 @@ class TournamentDashboardController extends GetxController {
   TournamentModel getTournamentWithoutCompetition(
     List<CompetenceModel> competencia,
   ) {
-    DateTime fechaFinal = DateTime.parse(fecha.value + " " + hora.value);
-
     return TournamentModel(
       id: "",
       nombre: nombreController.text,
-      fecha: Timestamp.fromDate(fechaFinal),
+      fecha: Tournament.convertTimestamp(fecha.value, hora.value),
       detalle: detalleController.text,
       nombreJuego: nombreController.text,
       nroEquipos: int.parse(nroEquiposController.text),

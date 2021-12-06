@@ -12,7 +12,6 @@ class UpdateProfileUI extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget build(BuildContext context) {
-    //print('user.name: ' + user?.value?.name);
     authController.nameController.text =
         authController.firestoreUser.value!.name;
     authController.emailController.text =

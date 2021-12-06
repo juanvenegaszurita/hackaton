@@ -14,7 +14,6 @@ class TournamentListController extends GetxController {
   void onReady() async {
     tournamentService.streamFirestoreListTournament().listen(
       (event) {
-        //print("streamFirestoreListTournament: " + event.toString());
         listTournament.value = event;
         update();
       },

@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
           ],
           debugShowCheckedModeBanner: false,
           //defaultTransition: Transition.fade,
-          theme: AppThemes.light,
+          theme: AppThemes.dark,
           darkTheme: AppThemes.dark,
           themeMode: ThemeMode.dark,
           initialRoute: "/",

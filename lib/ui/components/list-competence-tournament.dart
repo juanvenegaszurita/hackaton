@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackaton/constants/constants.dart';
 import 'package:hackaton/controllers/private/tournament_dashboard_controller.dart';
 import 'package:hackaton/models/models.dart';
 import 'package:hackaton/ui/ui.dart';
@@ -45,6 +46,7 @@ class ListCompetenceTournament extends StatelessWidget {
           height: listaTMP.length > 1
               ? (alto + 50) + listaTMP.length * 7
               : 60 + alto,
+          color: AppThemes.orange.withGreen(125),
           body: ListView(
             children: [
               Center(
