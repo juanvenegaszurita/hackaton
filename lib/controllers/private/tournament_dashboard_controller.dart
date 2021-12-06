@@ -13,6 +13,7 @@ class TournamentDashboardController extends GetxController {
 
   // Tournament
   TextEditingController nombreController = TextEditingController();
+  TextEditingController nombreJuegoController = TextEditingController();
   TextEditingController detalleController = TextEditingController();
   TextEditingController nroEquiposController = TextEditingController();
   TextEditingController ubicacionController = TextEditingController();
@@ -54,6 +55,7 @@ class TournamentDashboardController extends GetxController {
 
   setDataController() {
     nombreController.text = currentTournament.nombre;
+    nombreJuegoController.text = currentTournament.nombreJuego;
     detalleController.text = currentTournament.detalle;
     nroEquiposController.text = currentTournament.nroEquipos.toString();
     ubicacionController.text = currentTournament.ubicacion;
@@ -97,7 +99,7 @@ class TournamentDashboardController extends GetxController {
       nombre: nombreController.text,
       fecha: Tournament.convertTimestamp(fecha.value, hora.value),
       detalle: detalleController.text,
-      nombreJuego: nombreController.text,
+      nombreJuego: nombreJuegoController.text,
       nroEquipos: int.parse(nroEquiposController.text),
       ubicacion: ubicacionController.text,
       participantes: currentTournament.participantes,
@@ -111,11 +113,14 @@ class TournamentDashboardController extends GetxController {
     int indTeam,
   ) {
     setErrorDialog('');
-    if (currentTournament
-        .competencia[indCom].teams[indTeam].participanteGanador.isNotEmpty) {
+    if (nombreTeamController.text.isEmpty) {
+      setErrorDialog('Ingresar Nombre Teams');
+    } else if (team.participanteGanador.isNotEmpty) {
       if (currentTournament.competencia[indCom].teams.length >
           currentTournament.competencia[indCom + 1].teams.length) {
         int intPerdedor = (indTeam % 2 == 0) ? indTeam + 1 : indTeam - 1;
+
+        // debe estar activo el perdedor
         if (currentTournament.competencia[indCom].teams[intPerdedor].estado ==
             TeamsModel.activo) {
           // ganador

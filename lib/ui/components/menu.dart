@@ -29,7 +29,7 @@ class Menu extends StatelessWidget {
     final List<Widget> listMenu = [
       DrawerHeader(
         decoration: BoxDecoration(
-          color: AppThemes.dodgerBanco,
+          color: AppThemes.nevada,
         ),
         child: Text('Menú'),
       )

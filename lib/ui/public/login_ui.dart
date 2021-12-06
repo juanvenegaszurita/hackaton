@@ -77,7 +77,6 @@ class LoginUi extends GetResponsiveView {
                     onPressed: () => Get.to(SignUpUI()),
                   ),
                   languageListTile(),
-                  themeListTile(),
                 ],
               ),
             ),

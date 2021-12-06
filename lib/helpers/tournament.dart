@@ -29,13 +29,14 @@ class Tournament {
     int etapa = 1;
 
     int largoEquipo = listParticipantes.length ~/ nroEquipos;
-    while (largoEquipo >= 1) {
+    int largoEquipoItera = largoEquipo == 1 ? nroEquipos : largoEquipo;
+    while (largoEquipoItera >= 1) {
       List<TeamsModel> teams = [];
       bool isFirt = indTmpPart < listParticipantes.length;
-      for (int i = 0; i < largoEquipo; i++) {
+      for (int i = 0; i < largoEquipoItera; i++) {
         List<CompetitorModel> participantes = [];
         if (isFirt) {
-          for (int x = 0; x < (listParticipantes.length / nroEquipos); x++) {
+          for (int x = 0; x < largoEquipo; x++) {
             participantes.add(
               CompetitorModel(
                 id: x,
@@ -58,8 +59,8 @@ class Tournament {
 
       competencia.add(
         new CompetenceModel(
-          id: largoEquipo,
-          etapa: "Etapa ${largoEquipo == 1 ? "Final" : etapa}",
+          id: largoEquipoItera,
+          etapa: "Etapa ${largoEquipoItera == 1 ? "Final" : etapa}",
           teams: teams,
         ),
       );
@@ -76,13 +77,13 @@ class Tournament {
             .toList();
         competencia.add(
           new CompetenceModel(
-            id: largoEquipo,
+            id: largoEquipoItera,
             etapa: "Etapa $etapa",
             teams: newTeams,
           ),
         );
       }
-      largoEquipo = largoEquipo ~/ 2;
+      largoEquipoItera = largoEquipoItera ~/ 2;
       etapa++;
     }
 

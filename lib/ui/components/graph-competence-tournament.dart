@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graphview/GraphView.dart';
+import 'package:hackaton/constants/constants.dart';
 import 'package:hackaton/controllers/private/tournament_dashboard_controller.dart';
 import 'package:hackaton/models/competence_model.dart';
 import 'package:hackaton/models/models.dart';
@@ -109,10 +110,13 @@ class GraphCompetenceTournament extends StatelessWidget {
         width: 200,
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
+          border: Border.all(
+            color: AppThemes.orange,
+          ),
           borderRadius: BorderRadius.circular(4),
           boxShadow: [
             BoxShadow(
-              color: Theme.of(context).colorScheme.primary,
+              color: AppThemes.nevada,
               spreadRadius: 1,
             ),
           ],

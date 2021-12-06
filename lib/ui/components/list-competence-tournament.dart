@@ -22,7 +22,8 @@ class ListCompetenceTournament extends StatelessWidget {
         alto += altoTMP + 120;
         listaTMP.add(
           CardGeneric(
-            color: Theme.of(context).appBarTheme.backgroundColor!,
+            border: true,
+            color: AppThemes.nevada,
             onTap: () {
               if (controller.authController.firebaseUser.value?.uid != null) {
                 ModalTeam.openDialog(
@@ -46,7 +47,7 @@ class ListCompetenceTournament extends StatelessWidget {
           height: listaTMP.length > 1
               ? (alto + 50) + listaTMP.length * 7
               : 60 + alto,
-          color: AppThemes.orange.withGreen(125),
+          color: AppThemes.dodgerBanco,
           body: ListView(
             children: [
               Center(

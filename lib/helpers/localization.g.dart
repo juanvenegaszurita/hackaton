@@ -81,6 +81,7 @@ class Localization extends Translations {
           /** tournamentDashboard */
           'tournamentDashboard.title': 'Tablero de torneos',
           'tournamentDashboard.name': 'Nombre',
+          'tournamentDashboard.gameName': 'Nombre Juego',
           'tournamentDashboard.date': 'Fecha',
           'tournamentDashboard.hour': 'Hora',
           'tournamentDashboard.numEquipment': 'N° de Equipos',
@@ -182,6 +183,7 @@ class Localization extends Translations {
           /** tournamentDashboard */
           'tournamentDashboard.title': 'Tournament Dashboard',
           'tournamentDashboard.name': 'Name',
+          'tournamentDashboard.gameName': 'Game Name',
           'tournamentDashboard.date': 'Date',
           'tournamentDashboard.hour': 'Hora',
           'tournamentDashboard.numEquipment': 'N° of Equipment',

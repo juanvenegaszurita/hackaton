@@ -88,9 +88,10 @@ class AppThemes {
       ),
     ),
     colorScheme: ColorScheme.dark(
-      primary: _darkPrimaryColor,
+      primary: orange,
       primaryVariant: _darkBackgroundColor,
-      secondary: _darkPrimaryColor,
+      secondary: nevada,
+      surface: dodgerBanco,
     ),
     snackBarTheme: SnackBarThemeData(
       contentTextStyle: TextStyle(color: Colors.white),
@@ -100,7 +101,12 @@ class AppThemes {
     iconTheme: IconThemeData(
       color: _darkIconColor, //_darkIconColor,
     ),
-    popupMenuTheme: PopupMenuThemeData(color: _darkBackgroundAppBarColor),
+    popupMenuTheme: PopupMenuThemeData(
+      color: _darkBackgroundAppBarColor,
+      textStyle: TextStyle(
+        color: white,
+      ),
+    ),
     textTheme: _darkTextTheme,
     buttonTheme: ButtonThemeData(
       shape: RoundedRectangleBorder(
@@ -149,6 +155,19 @@ class AppThemes {
       ),
       fillColor: _darkInputFillColor,
       focusColor: _darkBorderActiveColor,
+    ),
+    dialogBackgroundColor: ebonyClay,
+    dialogTheme: DialogTheme(
+      contentTextStyle: TextStyle(
+        color: white,
+      ),
+      backgroundColor: ebonyClay,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+        side: BorderSide(
+          color: orange,
+        ),
+      ),
     ),
   );
 }

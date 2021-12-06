@@ -73,8 +73,8 @@ class TournamentDashboardUI extends StatelessWidget {
     return Column(
       children: [
         GridResponsive(
-          xl: 1,
-          lg: 1,
+          xl: 2,
+          lg: 2,
           md: 1,
           sm: 1,
           xs: 1,
@@ -92,6 +92,17 @@ class TournamentDashboardUI extends StatelessWidget {
               keyboardType: TextInputType.text,
               onChanged: (value) => null,
               onSaved: (value) => controller.nombreController.text = value!,
+            ),
+            FormInputFieldWithIcon(
+              enabled: isLogin,
+              controller: controller.nombreJuegoController,
+              iconPrefix: Icons.gamepad_outlined,
+              labelText: 'tournamentDashboard.gameName'.tr,
+              validator: Validator().notEmpty,
+              keyboardType: TextInputType.text,
+              onChanged: (value) => null,
+              onSaved: (value) =>
+                  controller.nombreJuegoController.text = value!,
             ),
           ],
         ),
@@ -117,16 +128,6 @@ class TournamentDashboardUI extends StatelessWidget {
               labelText: controller.currentHora,
             ),
             FormInputFieldWithIcon(
-              enabled: false,
-              controller: controller.nroEquiposController,
-              iconPrefix: Icons.format_list_numbered,
-              labelText: 'tournamentDashboard.numEquipment'.tr,
-              validator: Validator().number,
-              keyboardType: TextInputType.number,
-              onChanged: (value) => null,
-              onSaved: (value) => controller.nroEquiposController.text = value!,
-            ),
-            FormInputFieldWithIcon(
               enabled: isLogin,
               controller: controller.ubicacionController,
               iconPrefix: Icons.location_on,
@@ -135,6 +136,16 @@ class TournamentDashboardUI extends StatelessWidget {
               keyboardType: TextInputType.text,
               onChanged: (value) => null,
               onSaved: (value) => controller.ubicacionController.text = value!,
+            ),
+            FormInputFieldWithIcon(
+              enabled: false,
+              controller: controller.nroEquiposController,
+              iconPrefix: Icons.format_list_numbered,
+              labelText: 'tournamentDashboard.numEquipment'.tr,
+              validator: Validator().number,
+              keyboardType: TextInputType.number,
+              onChanged: (value) => null,
+              onSaved: (value) => controller.nroEquiposController.text = value!,
             ),
           ],
         ),
@@ -205,10 +216,11 @@ class TournamentDashboardUI extends StatelessWidget {
     TournamentDashboardController controller,
   ) async {
     final DateTime? picked = await showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101));
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2015, 8),
+      lastDate: DateTime(2101),
+    );
     if (picked != null) controller.setFecha(picked.toString().split(" ")[0]);
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:hackaton/constants/constants.dart';
 import 'package:hackaton/controllers/private/tournament_dashboard_controller.dart';
 import 'package:hackaton/helpers/validator.dart';
 import 'package:hackaton/models/models.dart';
@@ -8,17 +9,20 @@ import 'package:hackaton/models/teams_model.dart';
 import 'package:hackaton/ui/ui.dart';
 
 class ModalTeam {
-  static Future<dynamic> dialog({
+  static void dialog({
     required BuildContext context,
     required String title,
     required Widget content,
     Future Function()? onPressed,
     Future Function()? onPressedWin,
-  }) {
-    return showDialog(
+  }) async {
+    await Future.delayed(Duration(milliseconds: 500));
+    showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          contentPadding: EdgeInsets.all(8),
+          actionsPadding: EdgeInsets.all(10),
           title: Text(
             title,
             style: TextStyle(
@@ -159,19 +163,28 @@ class ModalTeam {
                   ),
                 ),
                 FormVerticalSpace(),
-                ...team.participantes
-                    .map(
-                      (e) => RadioListTile(
-                        title: Text(e.nombre),
-                        value: e.nombre,
-                        groupValue: team.participanteGanador,
-                        onChanged: (String? value) {
-                          team.setParticipanteGanador(value!);
-                          controller.updateDialogParticipante();
-                        },
-                      ),
-                    )
-                    .toList(),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: AppThemes.orange,
+                    ),
+                  ),
+                  child: Column(
+                    children: team.participantes
+                        .map(
+                          (e) => RadioListTile(
+                            title: Text(e.nombre),
+                            value: e.nombre,
+                            groupValue: team.participanteGanador,
+                            onChanged: (String? value) {
+                              team.setParticipanteGanador(value!);
+                              controller.updateDialogParticipante();
+                            },
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ),
                 FormVerticalSpace(),
                 Text(
                   controller.currentErrorDialog,
@@ -181,6 +194,7 @@ class ModalTeam {
             ),
           ),
         ),
+        //################ boton aceptar
         onPressed: () async {
           competencias[indCom].teams[indTeam] = TeamsModel(
             id: team.id,
@@ -194,7 +208,9 @@ class ModalTeam {
             controller.currentId,
             controller.getTournamentWithoutCompetition(competencias),
           );
+          controller.updateDialogParticipante();
         },
+        //################ boton ganador
         onPressedWin: () async {
           TournamentModel? winTournament = controller.winTournament(
             team,
@@ -206,8 +222,10 @@ class ModalTeam {
               controller.currentId,
               winTournament,
             );
+            controller.updateDialogParticipante();
             return true;
           } else {
+            controller.updateDialogParticipante();
             return false;
           }
         },

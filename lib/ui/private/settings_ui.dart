@@ -27,7 +27,6 @@ class SettingsUI extends GetResponsiveView {
       shrinkWrap: true,
       children: <Widget>[
         languageListTile(),
-        themeListTile(),
         ListTile(
             title: Text('settings.updateProfile'.tr),
             trailing: ElevatedButton(

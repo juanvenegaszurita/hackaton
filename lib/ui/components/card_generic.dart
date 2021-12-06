@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackaton/constants/constants.dart';
 
 class CardGeneric extends StatelessWidget {
   CardGeneric({
@@ -11,6 +12,7 @@ class CardGeneric extends StatelessWidget {
     this.paddingLeft: 10,
     this.paddingRight: 10,
     this.paddingTop: 10,
+    this.border: false,
   });
   final Widget body;
   final void Function()? onTap;
@@ -21,6 +23,7 @@ class CardGeneric extends StatelessWidget {
   final double paddingLeft;
   final double paddingRight;
   final double paddingTop;
+  final bool border;
 
   Widget build(BuildContext context) {
     return Container(
@@ -31,6 +34,7 @@ class CardGeneric extends StatelessWidget {
         elevation: 5,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
+          side: border ? BorderSide(color: AppThemes.orange) : BorderSide(),
         ),
         child: InkWell(
           splashColor: color != null
