@@ -42,8 +42,7 @@ class ViewerController extends GetxController {
           );
         });
       },
-    );
-
+    ); 
     super.onReady();
     hideLoadingIndicator();
   }

@@ -54,8 +54,8 @@ class TournamentListUI extends StatelessWidget {
             ListTile(
               title: Text(item.nombre, style: TextStyle(fontWeight: FontWeight.bold),),
               subtitle: Text(
-                  'Juego: ' + item.nombreJuego + '\n' + 'viewers.textDateTitle'.tr 
-                  + ' ' + formatted.toString(),
+                  'viewers.textTournamentGameTitle'.tr + ': ' + item.nombreJuego + '\n' + 
+                  'viewers.textTournamentDateTitle'.tr + ' ' + formatted.toString(),
                   textAlign: TextAlign.left,
                   style: TextStyle( fontSize: 12),),
               leading: ConstrainedBox(
@@ -80,6 +80,16 @@ class TournamentListUI extends StatelessWidget {
         ),
       );
     });
+
+    if(controller.currentListTournament.length == 0){
+      rowsTorneo.add(Center(child: 
+                      Text('viewers.textTournamentNull'.tr, 
+                            style: TextStyle(
+                              fontFamily: "Plaguard")
+                            )
+                          )
+                    ); 
+    }
 
     return rowsTorneo;
   }
