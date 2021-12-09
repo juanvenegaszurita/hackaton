@@ -16,6 +16,7 @@ class TournamentNewUI extends GetResponsiveView {
   Widget builder() {
     double screenWidth = screen.isDesktop ? 1200 : screen.width;
     return GetBuilder<HomeController>(
+      id: "home",
       init: HomeController(),
       builder: (controller) => Form(
         key: _formKey,

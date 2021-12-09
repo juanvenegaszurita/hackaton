@@ -41,6 +41,10 @@ class TournamentDashboardUI extends StatelessWidget {
                     constraints: BoxConstraints(
                       maxHeight: 1000,
                     ),
+                    padding: EdgeInsets.only(
+                      top: 10,
+                      bottom: 50,
+                    ),
                     child: TabBarView(
                       children: [
                         GraphCompetenceTournament(

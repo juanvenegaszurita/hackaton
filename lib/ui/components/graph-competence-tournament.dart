@@ -53,9 +53,9 @@ class GraphCompetenceTournament extends StatelessWidget {
       ..orientation = (BuchheimWalkerConfiguration.ORIENTATION_RIGHT_LEFT);
 
     return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
+      scrollDirection: Axis.horizontal,
       child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
+        scrollDirection: Axis.vertical,
         padding: EdgeInsets.symmetric(horizontal: 5),
         child: GraphView(
           graph: graph,
