@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hackaton/constants/constants.dart';
 import 'package:hackaton/controllers/private/home_controller.dart';
+import 'package:hackaton/ui/ui.dart';
 
 class ListCardDetails extends StatelessWidget {
   ListCardDetails({
@@ -17,34 +19,19 @@ class ListCardDetails extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: ListView(
           children: list
-              .map((e) => Card(
-                    elevation: 12,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(24),
-                    ),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 24.0, vertical: 9),
+              .map((e) => CardGeneric(
+                    border: true,
+                    color: AppThemes.nevada,
+                    height: 80,
+                    body: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(24),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          SizedBox(
-                            width: 16,
-                          ),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                Text(
-                                  e.toString(),
-                                  style: Theme.of(context).textTheme.headline5,
-                                )
-                              ],
-                            ),
+                          Text(
+                            e.toString(),
                           ),
                           IconButton(
                             icon: Icon(

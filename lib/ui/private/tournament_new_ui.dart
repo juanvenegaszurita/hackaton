@@ -14,6 +14,7 @@ class TournamentNewUI extends GetResponsiveView {
 
   @override
   Widget builder() {
+    double screenWidth = screen.isDesktop ? 1200 : screen.width;
     return GetBuilder<HomeController>(
       init: HomeController(),
       builder: (controller) => Form(
@@ -51,15 +52,9 @@ class TournamentNewUI extends GetResponsiveView {
                       controller.setNroEquipos(value.toInt());
                     },
                   ),
-                  GridResponsive(
-                    xs: 2,
-                    sm: 2,
-                    md: 2,
-                    lg: 2,
-                    xl: 2,
-                    paddingTop: 2.5,
-                    children: [
-                      Autocomplete(
+                  Container(
+                      width: screenWidth - 120,
+                      child: Autocomplete(
                         optionsBuilder: (TextEditingValue textEditingValue) {
                           if (textEditingValue.text.isEmpty) {
                             return const Iterable<String>.empty();
@@ -108,16 +103,17 @@ class TournamentNewUI extends GetResponsiveView {
                                 .nombreParticipanteController.text = value!,
                           );
                         },
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            controller.addPlayer();
-                          }
-                        },
-                        icon: Icon(Icons.add),
-                      )
-                    ],
+                      )),
+                  Container(
+                    width: 100,
+                    child: IconButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          controller.addPlayer();
+                        }
+                      },
+                      icon: Icon(Icons.add),
+                    ),
                   ),
                   Container(
                     height: screen.height - 380,

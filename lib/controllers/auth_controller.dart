@@ -8,7 +8,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hackaton/models/menu_option_model.dart';
 import 'package:hackaton/models/user_model.dart';
 import 'package:hackaton/ui/private/home_ui.dart';
-import 'package:hackaton/ui/public/login_ui.dart';
 import 'package:hackaton/ui/components/components.dart';
 import 'package:hackaton/helpers/helpers.dart';
 // other

@@ -36,9 +36,6 @@ class AppThemes {
   //Text Colors
   static const Color _darkTextColor = Colors.white;
 
-  //Border Color
-  static const Color _darkBorderColor = nevada;
-
   //Icon Color
   static const Color _darkIconColor = nevada;
 
