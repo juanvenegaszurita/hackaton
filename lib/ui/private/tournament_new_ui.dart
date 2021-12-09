@@ -59,15 +59,55 @@ class TournamentNewUI extends GetResponsiveView {
                     xl: 2,
                     paddingTop: 2.5,
                     children: [
-                      FormInputFieldWithIcon(
-                        controller: controller.nombreParticipanteController,
-                        iconPrefix: Icons.person,
-                        labelText: 'home.namePlayer'.tr,
-                        validator: Validator().notEmpty,
-                        keyboardType: TextInputType.text,
-                        onChanged: (value) => null,
-                        onSaved: (value) => controller
-                            .nombreParticipanteController.text = value!,
+                      Autocomplete(
+                        optionsBuilder: (TextEditingValue textEditingValue) {
+                          if (textEditingValue.text.isEmpty) {
+                            return const Iterable<String>.empty();
+                          } else {
+                            return controller.listaParticipantes.where((word) =>
+                                word.toLowerCase().contains(
+                                    textEditingValue.text.toLowerCase()));
+                          }
+                        },
+                        optionsViewBuilder:
+                            (context, Function(String) onSelected, options) {
+                          return Material(
+                            elevation: 2,
+                            child: ListView.separated(
+                              padding: EdgeInsets.zero,
+                              itemBuilder: (context, index) {
+                                final option = options.elementAt(index);
+
+                                return ListTile(
+                                  title: Text(option.toString()),
+                                  onTap: () {
+                                    onSelected(option.toString());
+                                  },
+                                );
+                              },
+                              separatorBuilder: (context, index) => Divider(),
+                              itemCount: options.length,
+                            ),
+                          );
+                        },
+                        fieldViewBuilder: (context, textEditingController,
+                            focusNode, onFieldSubmitted) {
+                          controller.nombreParticipanteController =
+                              textEditingController;
+                          return TextFormField(
+                            controller: textEditingController,
+                            focusNode: focusNode,
+                            onEditingComplete: onFieldSubmitted,
+                            decoration: InputDecoration(
+                              labelText: 'home.namePlayer'.tr,
+                              prefixIcon: Icon(Icons.person),
+                            ),
+                            validator: Validator().notEmpty,
+                            keyboardType: TextInputType.text,
+                            onSaved: (value) => controller
+                                .nombreParticipanteController.text = value!,
+                          );
+                        },
                       ),
                       IconButton(
                         onPressed: () {

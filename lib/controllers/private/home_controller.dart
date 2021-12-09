@@ -17,6 +17,8 @@ class HomeController extends GetxController {
   final participantes = RxList([]).obs;
   List<dynamic> get currentParticipantes => participantes.value;
 
+  final List<String> listaParticipantes = ['juan', 'Jose', 'Michael'];
+
   addPlayer() {
     participantes.value.add(nombreParticipanteController.text);
     nombreParticipanteController.text = "";
@@ -57,6 +59,8 @@ class HomeController extends GetxController {
 
         String idTournamet = await tor.newTournament(Tournament.createTourment(
             listParticipantes, currentnroEquipos.toInt()));
+        currentParticipantes.clear();
+        nombreParticipanteController.clear();
         Get.to(
           TournamentDashboardUI(),
           arguments: {
