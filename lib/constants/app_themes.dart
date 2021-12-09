@@ -18,7 +18,7 @@ class AppThemes {
   static const Color nevada = Color.fromRGBO(70, 9, 195, 1);
   static const Color ebonyClay = Color.fromRGBO(0, 0, 62, 1);
 
-  static String font1 = "ProductSans";
+  static String font1 = "Plaguard"; //"ProductSans";
   static String font2 = "Roboto";
   //constants color range for light theme
 

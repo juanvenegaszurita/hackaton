@@ -63,6 +63,7 @@ class ScaffoldGeneric extends GetResponsiveView {
                 //: ThemeData().appBarTheme.backgroundColor,
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
+                fontFamily: "Plaguard"
               ),
             ),
           ),

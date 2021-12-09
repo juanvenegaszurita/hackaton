@@ -115,7 +115,10 @@ class Localization extends Translations {
           'team.name': 'Nombre',
           /** viewers */
           'viewers.textTournamentTitle': 'Torneos BancoEstado',
-          'viewers.textDateTitle': 'Fecha de Torneo'
+          'viewers.textTournamentDateTitle': 'Fecha de Torneo',
+          'viewers.textTournamentGameTitle': 'Juego',
+          'viewers.textTournamentNull': 'No hay Torneos disponibles'
+
         },
         'en': {
           /** login */
@@ -220,7 +223,9 @@ class Localization extends Translations {
           'team.name': 'Name',
           /** viewers */
           'viewers.textTournamentTitle': 'Tournament BancoEstado',
-          'viewers.textDateTitle': 'Tournament date'
+          'viewers.textTournamentDateTitle': 'Tournament date',
+          'viewers.textTournamentGameTitle': 'Game',
+          'viewers.textTournamentNull': 'No tournaments available'
         },
       };
 }
