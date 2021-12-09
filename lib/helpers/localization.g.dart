@@ -112,6 +112,7 @@ class Localization extends Translations {
           'general.titleNoOK': 'Error',
           'general.messageOK': 'Todo Salio Correcto',
           'general.messageNoOK': 'Error en el proceso',
+          'general.questionDelete': '¿Desea eliminar?',
           'team.name': 'Nombre',
           /** viewers */
           'viewers.textTournamentTitle': 'Torneos BancoEstado',
@@ -208,6 +209,7 @@ class Localization extends Translations {
           'general.close': 'Close',
           'general.cancel': 'Cancel',
           'general.accept': 'To accept',
+          'general.questionDelete': 'Want to delete?',
           'chart.title': 'Graphics',
           'chart.monthly': 'Monthly graphic',
           'chart.accounts': 'Graph Accounts',
