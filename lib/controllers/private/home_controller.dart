@@ -14,8 +14,8 @@ class HomeController extends GetxController {
   int get currentnroEquipos => nroEquipos.value;
   int get currentDivision => division.value;
 
-  final participantes = RxList([]).obs;
-  List<dynamic> get currentParticipantes => participantes.value;
+  final participantes = RxList<String>([]).obs;
+  List<String> get currentParticipantes => participantes.value;
 
   final List<String> listaParticipantes = [];
 
@@ -38,7 +38,7 @@ class HomeController extends GetxController {
   }
 
   removePlayer(participante) {
-    currentParticipantes.remove(participante);
+    participantes.value.remove(participante);
     update(["home"]);
   }
 
@@ -63,16 +63,15 @@ class HomeController extends GetxController {
           colorText: Get.theme.snackBarTheme.actionTextColor);
     } else {
       {
-        TournamentService tor = TournamentService();
-        List<String> listParticipantes = [];
-        currentParticipantes.forEach((element) {
-          listParticipantes.add(element);
-        });
-
-        String idTournamet = await tor.newTournament(Tournament.createTourment(
-            listParticipantes, currentnroEquipos.toInt()));
-        currentParticipantes.clear();
-        nombreParticipanteController.clear();
+        String idTournamet = await tournamentService.newTournament(
+          Tournament.createTourment(
+            currentParticipantes,
+            currentnroEquipos.toInt(),
+          ),
+        );
+        participantes.value.assignAll([]);
+        nroEquipos.value = 0;
+        update(["home"]);
         Get.to(
           TournamentDashboardUI(),
           arguments: {

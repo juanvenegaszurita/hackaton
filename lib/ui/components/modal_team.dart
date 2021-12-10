@@ -21,7 +21,7 @@ class ModalTeam {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          contentPadding: EdgeInsets.all(8),
+          contentPadding: EdgeInsets.all(10),
           actionsPadding: EdgeInsets.all(10),
           title: Text(
             title,

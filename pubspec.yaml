@@ -86,6 +86,11 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts: 
+    - family: Plaguard
+      fonts:
+        - asset: assets/fonts/Plaguard.otf
+
   assets:
     - assets/images/icons_tournament_light.png
     - assets/images/icons_tournament_dark.png

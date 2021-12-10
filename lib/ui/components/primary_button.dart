@@ -12,7 +12,7 @@ class PrimaryButton extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         labelText.toUpperCase(),
-        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontFamily: "Plaguard"),
       ),
     );
   }

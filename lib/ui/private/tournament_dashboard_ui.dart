@@ -41,6 +41,10 @@ class TournamentDashboardUI extends StatelessWidget {
                     constraints: BoxConstraints(
                       maxHeight: 1000,
                     ),
+                    padding: EdgeInsets.only(
+                      top: 10,
+                      bottom: 50,
+                    ),
                     child: TabBarView(
                       children: [
                         GraphCompetenceTournament(
@@ -198,13 +202,21 @@ class TournamentDashboardUI extends StatelessWidget {
             xs: 1,
             children: [
               PrimaryButton(
-                  labelText: 'tournamentDashboard.delete'.tr,
-                  onPressed: () async {
-                    await controller.tournamentService.deleteTournament(
-                      controller.currentId,
-                    );
-                    Get.back();
-                  }),
+                labelText: 'tournamentDashboard.delete'.tr,
+                onPressed: () async {
+                  ModalTeam.dialog(
+                    context: context,
+                    title: 'tournamentDashboard.delete'.tr,
+                    content: Text('general.questionDelete'.tr),
+                    onPressed: () async {
+                      await controller.tournamentService.deleteTournament(
+                        controller.currentId,
+                      );
+                      Get.back();
+                    },
+                  );
+                },
+              ),
             ],
           ),
       ],

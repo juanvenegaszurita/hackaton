@@ -19,7 +19,7 @@ class ViewersUI extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            SizedBox(height: 10.0), 
+            SizedBox(height: 10.0),  
             ListView(
               shrinkWrap: true,
               children: _rowsTorneo(context, controller),
@@ -35,7 +35,7 @@ class ViewersUI extends StatelessWidget {
     ViewerController controller,
   ) {
     List<Widget> rowsTorneo = [];
-
+ 
     controller.tournamentList.forEach((tl) {
       tl.listaTorneo.forEach((item) {
         DateTime fechaDT = DateTime.fromMicrosecondsSinceEpoch(
@@ -50,8 +50,8 @@ class ViewersUI extends StatelessWidget {
               ListTile(
                 title: Text(item.nombre, style: TextStyle(fontWeight: FontWeight.bold),),
                 subtitle: Text(
-                  'Juego: ' + item.nombreJuego + '\n' + 'viewers.textDateTitle'.tr 
-                  + ' ' + formatted.toString(),
+                  'viewers.textTournamentGameTitle'.tr + ': ' + item.nombreJuego + '\n' + 
+                  'viewers.textTournamentDateTitle'.tr + ': ' + formatted.toString(),
                   textAlign: TextAlign.left,
                   style: TextStyle( fontSize: 12),),
                 leading: ConstrainedBox(
@@ -77,6 +77,16 @@ class ViewersUI extends StatelessWidget {
         );
       });
     });
+
+    if(controller.tournamentList.length == 0){
+      rowsTorneo.add(Center(child: 
+                      Text('viewers.textTournamentNull'.tr, 
+                            style: TextStyle(
+                              fontFamily: "Plaguard")
+                            )
+                          )
+                    ); 
+    }
 
     return rowsTorneo;
   }

@@ -23,7 +23,9 @@ class Tournament {
   }
 
   static TournamentModel createTourment(
-      List<String> listParticipantes, int nroEquipos) {
+    List<String> listParticipantes,
+    int nroEquipos,
+  ) {
     int indTmpPart = 0;
     List<CompetenceModel> competencia = [];
     int etapa = 1;
@@ -33,9 +35,14 @@ class Tournament {
     while (largoEquipoItera >= 1) {
       List<TeamsModel> teams = [];
       bool isFirt = indTmpPart < listParticipantes.length;
+
+      // recorre lista de equipos seleccionados
       for (int i = 0; i < largoEquipoItera; i++) {
         List<CompetitorModel> participantes = [];
+        // solo agrega personas si es la primera etapa
+        // de lo contrario agrega teams sin participantes (vacio)
         if (isFirt) {
+          // recorre participantes
           for (int x = 0; x < largoEquipo; x++) {
             participantes.add(
               CompetitorModel(
@@ -46,6 +53,7 @@ class Tournament {
             indTmpPart++;
           }
         }
+        // agrega el teams
         teams.add(
           TeamsModel(
             id: i,
@@ -56,7 +64,7 @@ class Tournament {
           ),
         );
       }
-
+      // agrega competencia
       competencia.add(
         new CompetenceModel(
           id: largoEquipoItera,
@@ -64,7 +72,7 @@ class Tournament {
           teams: teams,
         ),
       );
-      if (isFirt) {
+      if (isFirt && largoEquipo != 1) {
         etapa++;
         List<TeamsModel> newTeams = teams
             .map((element) => TeamsModel(
