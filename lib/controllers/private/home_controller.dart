@@ -17,7 +17,19 @@ class HomeController extends GetxController {
   final participantes = RxList([]).obs;
   List<dynamic> get currentParticipantes => participantes.value;
 
-  final List<String> listaParticipantes = ['juan', 'Jose', 'Michael'];
+  final List<String> listaParticipantes = [];
+
+  @override
+  void onReady() async {
+    tournamentService.streamFirestoreListParticipantes().listen(
+      (event) {
+        var stringList = List<String>.from(event);
+        listaParticipantes.addAll(stringList);
+      },
+    );
+
+    super.onReady();
+  }
 
   addPlayer() {
     participantes.value.add(nombreParticipanteController.text);
