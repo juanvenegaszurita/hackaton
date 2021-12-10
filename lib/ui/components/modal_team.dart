@@ -23,6 +23,7 @@ class ModalTeam {
         return AlertDialog(
           contentPadding: EdgeInsets.all(10),
           actionsPadding: EdgeInsets.all(10),
+          actionsAlignment: MainAxisAlignment.center,
           title: Text(
             title,
             style: TextStyle(
@@ -118,13 +119,14 @@ class ModalTeam {
       controller.nombreTeamController.text = team.nombre;
       controller.puntosTeamController.text = team.puntos.toString();
       controller.setErrorDialog('');
+      controller.updateDialogParticipante();
       ModalTeam.dialog(
         context: context,
         title: etapa,
         content: GetBuilder<TournamentDashboardController>(
-          init: TournamentDashboardController(),
+          init: controller,
           id: "dialogParticipante",
-          builder: (controller) => SingleChildScrollView(
+          builder: (controller2) => SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -230,6 +232,7 @@ class ModalTeam {
           }
         },
       );
+      controller.updateDialogParticipante();
     } else {
       ModalTeam.dialog(
         context: context,

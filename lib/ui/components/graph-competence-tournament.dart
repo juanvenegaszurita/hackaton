@@ -54,9 +54,10 @@ class GraphCompetenceTournament extends StatelessWidget {
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
+      padding: EdgeInsets.all(8),
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        padding: EdgeInsets.symmetric(horizontal: 5),
+        padding: EdgeInsets.all(8),
         child: GraphView(
           graph: graph,
           algorithm: BuchheimWalkerAlgorithm(
