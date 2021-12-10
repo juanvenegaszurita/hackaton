@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:hackaton/constants/constants.dart';
 import 'package:hackaton/controllers/auth_controller.dart';
 import 'package:hackaton/controllers/private/home_controller.dart';
 import 'package:hackaton/controllers/controllers.dart';
 import 'package:hackaton/helpers/validator.dart';
 import 'package:hackaton/ui/components/components.dart';
-import 'package:hackaton/ui/components/list_card_details.dart';
 
 class TournamentNewUI extends GetResponsiveView {
   final AuthController authController = AuthController.to;
@@ -82,21 +82,60 @@ class TournamentNewUI extends GetResponsiveView {
                     ],
                   ),
                   Container(
-                    height: screen.height - 380,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Theme.of(Get.context!)
-                            .inputDecorationTheme
-                            .enabledBorder!
-                            .borderSide
-                            .color,
+                      height: screen.height - 380,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Theme.of(Get.context!)
+                              .inputDecorationTheme
+                              .enabledBorder!
+                              .borderSide
+                              .color,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: ListCardDetails(
-                      list: controller.currentParticipantes,
-                    ),
-                  ),
+                      child: Container(
+                        height: 500,
+                        width: double.infinity,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ListView(
+                            children: controller.currentParticipantes
+                                .map(
+                                  (nombreParticipante) => CardGeneric(
+                                    border: true,
+                                    color: AppThemes.nevada,
+                                    height: 80,
+                                    body: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(24),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            nombreParticipante,
+                                          ),
+                                          IconButton(
+                                            icon: Icon(
+                                              Icons.delete,
+                                              size: 26,
+                                              color: Colors.orange,
+                                            ),
+                                            onPressed: () =>
+                                                controller.removePlayer(
+                                              nombreParticipante,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                )
+                                .toList(),
+                          ),
+                        ),
+                      )),
                 ],
               ),
             ),

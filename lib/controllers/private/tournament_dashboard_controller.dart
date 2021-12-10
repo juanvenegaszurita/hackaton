@@ -65,7 +65,8 @@ class TournamentDashboardController extends GetxController {
 
     hora.value = "${fechaDT.hour}:${fechaDT.minute}";
     fecha.value = fechaDT.toString().split(" ")[0];
-    update();
+    update(["tournamentDashboard"]);
+    this.updateDialogParticipante();
   }
 
   setHora(String value) {
@@ -85,6 +86,7 @@ class TournamentDashboardController extends GetxController {
 
   updateDialogParticipante() {
     update(["dialogParticipante"]);
+    Get.forceAppUpdate();
   }
 
   TournamentModel getTournamentModel() {
@@ -116,8 +118,9 @@ class TournamentDashboardController extends GetxController {
     if (nombreTeamController.text.isEmpty) {
       setErrorDialog('Ingresar Nombre Teams');
     } else if (team.participanteGanador.isNotEmpty) {
-      if (currentTournament.competencia[indCom].teams.length >
-          currentTournament.competencia[indCom + 1].teams.length) {
+      if (currentTournament.competencia.length > 0 &&
+          currentTournament.competencia[indCom].teams.length >
+              currentTournament.competencia[indCom + 1].teams.length) {
         int intPerdedor = (indTeam % 2 == 0) ? indTeam + 1 : indTeam - 1;
 
         // debe estar activo el perdedor

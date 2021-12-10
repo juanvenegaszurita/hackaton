@@ -26,7 +26,7 @@ class DropdownPicker extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Theme.of(context).colorScheme.background,
+        /* color: Theme.of(context).colorScheme.background, */
         border: Border.all(
           width: 0.2,
           color: Theme.of(context).colorScheme.onBackground,

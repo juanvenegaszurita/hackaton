@@ -11,6 +11,7 @@ class TournamentDashboardUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<TournamentDashboardController>(
       init: TournamentDashboardController(),
+      id: "tournamentDashboard",
       builder: (controller) => ScaffoldGeneric(
         isMenu: false,
         isAppBarActions: false,

@@ -89,6 +89,7 @@ class AppThemes {
       primaryVariant: _darkBackgroundColor,
       secondary: nevada,
       surface: dodgerBanco,
+      background: dodgerBanco,
     ),
     snackBarTheme: SnackBarThemeData(
       contentTextStyle: TextStyle(color: Colors.white),
