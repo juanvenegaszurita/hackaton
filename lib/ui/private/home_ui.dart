@@ -35,7 +35,10 @@ class HomeUI extends GetResponsiveView {
                           scrollDirection: Axis.vertical,
                           child: TournamentListUI(),
                         ),
-                        TournamentNewUI(),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: TournamentNewUI(),
+                        ),
                       ],
                     ),
                   ),

@@ -54,6 +54,9 @@ class TournamentNewUI extends GetResponsiveView {
                     },
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
                         width: screenWidth - 120,
@@ -70,13 +73,24 @@ class TournamentNewUI extends GetResponsiveView {
                       ),
                       Container(
                         width: 100,
-                        child: IconButton(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              controller.addPlayer();
-                            }
-                          },
-                          icon: Icon(Icons.add),
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                          alignment: Alignment.bottomCenter,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: AppThemes.orange),
+                            shape: BoxShape.circle,
+                          ),
+                          child: IconButton(
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                controller.addPlayer();
+                              }
+                            },
+                            icon: Icon(
+                              Icons.add,
+                              color: AppThemes.orange,
+                            ),
+                          ),
                         ),
                       ),
                     ],
@@ -113,8 +127,11 @@ class TournamentNewUI extends GetResponsiveView {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(
-                                            nombreParticipante,
+                                          Flexible(
+                                            child: Text(
+                                              nombreParticipante,
+                                              textAlign: TextAlign.start,
+                                            ),
                                           ),
                                           IconButton(
                                             icon: Icon(
