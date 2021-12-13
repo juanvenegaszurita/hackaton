@@ -69,7 +69,12 @@ class HomeController extends GetxController {
             currentnroEquipos.toInt(),
           ),
         );
+        List<String> pParticipantes =
+            [...listaParticipantes, ...currentParticipantes].toSet().toList();
+
+        await tournamentService.updateListaParticipantes(pParticipantes);
         participantes.value.assignAll([]);
+        listaParticipantes.assignAll([]);
         nroEquipos.value = 0;
         update(["home"]);
         Get.to(

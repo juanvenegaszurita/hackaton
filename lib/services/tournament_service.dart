@@ -37,7 +37,7 @@ class TournamentService {
     List<String> lista,
   ) async {
     try {
-      Map<String, dynamic> listaM = [] as Map<String, dynamic>;
+      Map<String, dynamic> listaM = {'todos': lista};
       //lstaM.
       await _db.collection('participantes').doc('lista').update(listaM);
       hideLoadingIndicator();
