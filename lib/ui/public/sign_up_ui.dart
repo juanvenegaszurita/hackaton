@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:hackaton/constants/app_themes.dart';
 import 'package:hackaton/ui/components/components.dart';
 import 'package:hackaton/helpers/helpers.dart';
 import 'package:hackaton/controllers/controllers.dart';
@@ -26,7 +27,19 @@ class SignUpUI extends GetResponsiveView {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   LogoGraphicHeader(),
-                  SizedBox(height: 48.0),
+                  SizedBox(height: 20.0),
+                  CardGeneric(
+                    border: true,
+                    color: AppThemes.nevada,
+                    //height: 80, // esto puede ser dinámico
+                    body:Flexible(
+                      child: Text(
+                        'login.textResponsability'.tr,
+                        textAlign: TextAlign.start,
+                      ),
+                    ),
+                  ), 
+                  SizedBox(height: 20.0),
                   FormInputFieldWithIcon(
                     controller: authController.nameController,
                     iconPrefix: Icons.person,

@@ -27,6 +27,27 @@ class TournamentService {
             return TournamentModel.fromMap(finalData);
           }).toList());
 
+  Stream<dynamic> streamFirestoreListParticipantes() => _db
+      .collection('participantes')
+      .doc("lista")
+      .snapshots()
+      .map((event) => event.get("todos"));
+
+  Future<bool> updateListaParticipantes(
+    List<String> lista,
+  ) async {
+    try {
+      Map<String, dynamic> listaM = [] as Map<String, dynamic>;
+      //lstaM.
+      await _db.collection('participantes').doc('lista').update(listaM);
+      hideLoadingIndicator();
+      return true;
+    } catch (e) {
+      hideLoadingIndicator();
+      return false;
+    }
+  }
+
   Stream<TournamentModel> streamFirestoreTournament(
     String id,
     String currentUid,

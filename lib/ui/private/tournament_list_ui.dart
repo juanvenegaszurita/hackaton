@@ -26,7 +26,7 @@ class TournamentListUI extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                 )),
-                SizedBox(height: 20.0),
+                SizedBox(height: 25.0),
                 ListView(
                   shrinkWrap: true,
                   children: _rowsTorneo(context, controller),
@@ -82,13 +82,16 @@ class TournamentListUI extends StatelessWidget {
     });
 
     if(controller.currentListTournament.length == 0){
+      rowsTorneo.add(SizedBox(height: 48.0));
       rowsTorneo.add(Center(child: 
-                      Text('viewers.textTournamentNull'.tr, 
+                      Text('viewers.textTournamentNull'.tr,  
                             style: TextStyle(
-                              fontFamily: "Plaguard")
+                              fontSize: 15.0,
+                              fontFamily: "Plaguard"),
+                              
                             )
                           )
-                    ); 
+                    );
     }
 
     return rowsTorneo;
