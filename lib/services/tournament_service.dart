@@ -6,6 +6,11 @@ import 'package:hackaton/ui/components/loading.dart';
 class TournamentService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   final AuthController authController = AuthController.to;
+  static final String torneos = 'torneos';
+  static final String listaTorneo = 'listaTorneo';
+  static final String participantes = 'participantes';
+  static final String lista = 'lista';
+  static final String todos = 'todos';
 
   // code singleton
   static final TournamentService _tournamentService =
@@ -17,9 +22,9 @@ class TournamentService {
   // code singleton
 
   Stream<List<TournamentModel>> streamFirestoreListTournament() => _db
-      .collection('torneosPrueba')
+      .collection(torneos)
       .doc(authController.firebaseUser.value!.uid)
-      .collection('listaTorneo')
+      .collection(listaTorneo)
       .snapshots()
       .map((event) => event.docs.map((e) {
             Map<String, dynamic> finalData = e.data();
@@ -28,22 +33,22 @@ class TournamentService {
           }).toList());
 
   Stream<dynamic> streamFirestoreListParticipantes() => _db
-      .collection('participantes')
+      .collection(participantes)
       .doc("lista")
       .snapshots()
-      .map((event) => event.get("todos"));
+      .map((event) => event.get(todos));
 
   Future<bool> updateListaParticipantes(
-    List<String> lista,
+    List<String> listaUpdate,
   ) async {
     try {
-      Map<String, dynamic> listaM = {'todos': lista};
+      Map<String, dynamic> listaM = {'todos': listaUpdate};
       //lstaM.
-      await _db.collection('participantes').doc('lista').update(listaM);
-      hideLoadingIndicator();
+      await _db.collection(participantes).doc(lista).update(listaM);
+      //hideLoadingIndicator();
       return true;
     } catch (e) {
-      hideLoadingIndicator();
+      //hideLoadingIndicator();
       return false;
     }
   }
@@ -53,9 +58,9 @@ class TournamentService {
     String currentUid,
   ) =>
       _db
-          .collection('torneosPrueba')
+          .collection(torneos)
           .doc(currentUid)
-          .collection('listaTorneo')
+          .collection(listaTorneo)
           .doc(id)
           .snapshots()
           .map(
@@ -68,10 +73,12 @@ class TournamentService {
       );
 
   Stream<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
-      streamFirestoreListTournamentAll() => _db
-          .collection('torneosPrueba')
-          .snapshots()
-          .map((event) => event.docs.map((e) => e).toList());
+      streamFirestoreListTournamentAll() =>
+          _db.collection(torneos).snapshots().map(
+            (event) {
+              return event.docs.map((e) => e).toList();
+            },
+          );
 
   Future<bool> updateTournament(
     String idTournament,
@@ -80,9 +87,9 @@ class TournamentService {
     showLoadingIndicator();
     try {
       await _db
-          .collection('torneosPrueba')
+          .collection(torneos)
           .doc(authController.firebaseUser.value!.uid)
-          .collection('listaTorneo')
+          .collection(listaTorneo)
           .doc(idTournament)
           .update(tournamentModel.toJson());
       hideLoadingIndicator();
@@ -97,9 +104,9 @@ class TournamentService {
     showLoadingIndicator();
     try {
       await _db
-          .collection('torneosPrueba')
+          .collection(torneos)
           .doc(authController.firebaseUser.value!.uid)
-          .collection('listaTorneo')
+          .collection(listaTorneo)
           .doc(idTournament)
           .delete();
       hideLoadingIndicator();
@@ -116,9 +123,9 @@ class TournamentService {
     showLoadingIndicator();
     try {
       DocumentReference<Map<String, dynamic>> newt = await _db
-          .collection('torneosPrueba')
+          .collection(torneos)
           .doc(authController.firebaseUser.value!.uid)
-          .collection('listaTorneo')
+          .collection(listaTorneo)
           .add(tournamentModel.toJson());
       hideLoadingIndicator();
       return newt.id;

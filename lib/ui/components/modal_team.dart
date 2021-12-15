@@ -79,10 +79,18 @@ class ModalTeam {
               color: Colors.white,
             ),
           ),
-        Text(
-          "${'tournamentDashboard.state'.tr}: " + team.getEstados[team.estado],
-          style: TextStyle(
-            color: Colors.white,
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: statusColor(team.estado),
+          ),
+          padding: EdgeInsets.all(4),
+          margin: EdgeInsets.only(bottom: 4, top: 4),
+          child: Text(
+            team.getEstados[team.estado],
+            style: TextStyle(
+              color: Colors.white,
+            ),
           ),
         ),
         FormVerticalSpace(),
@@ -98,6 +106,19 @@ class ModalTeam {
             .toList()
       ],
     );
+  }
+
+  static Color statusColor(int estado) {
+    if (estado == TeamsModel.activo)
+      return Colors.green;
+    else if (estado == TeamsModel.ganador)
+      return Colors.orange;
+    else if (estado == TeamsModel.ganadorCompetencia)
+      return Colors.cyan.shade800;
+    else if (estado == TeamsModel.pendiente)
+      return Colors.deepPurpleAccent;
+    else
+      return Colors.red;
   }
 
   static openDialog(
@@ -212,9 +233,10 @@ class ModalTeam {
           );
           controller.updateDialogParticipante();
         },
-        //################ boton ganador
+        //################ boton ganador|
         onPressedWin: () async {
           TournamentModel? winTournament = controller.winTournament(
+            controller,
             team,
             indCom,
             indTeam,

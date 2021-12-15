@@ -22,32 +22,44 @@ class SettingsUI extends GetResponsiveView {
   }
 
   Widget _buildLayoutSection(BuildContext context) {
-    return ListView(
-      primary: false,
-      shrinkWrap: true,
-      children: <Widget>[
-        languageListTile(),
-        ListTile(
-            title: Text('settings.updateProfile'.tr),
-            trailing: ElevatedButton(
-              onPressed: () async {
-                Get.to(UpdateProfileUI());
-              },
-              child: Text(
-                'settings.updateProfile'.tr,
-              ),
-            )),
-        ListTile(
-          title: Text('settings.signOut'.tr),
-          trailing: ElevatedButton(
-            onPressed: () {
-              AuthController.to.signOut();
+    return GridResponsive(
+      xl: 2,
+      lg: 2,
+      md: 2,
+      sm: 1,
+      xs: 1,
+      children: [
+        Text('settings.language'.tr),
+        SizedBox(
+          width: 310,
+          child: DropdownPicker(
+            menuOptions: Globals.languageOptions,
+            selectedOption: LanguageController.to.currentLanguage,
+            onChanged: (value) async {
+              await LanguageController.to.updateLanguage(value!);
+              Get.forceAppUpdate();
             },
-            child: Text(
-              'settings.signOut'.tr,
-            ),
           ),
-        )
+        ),
+        //languageListTile(),
+        Text('settings.updateProfile'.tr),
+        ElevatedButton(
+          onPressed: () async {
+            Get.to(UpdateProfileUI());
+          },
+          child: Text(
+            'settings.updateProfile'.tr,
+          ),
+        ),
+        Text('settings.signOut'.tr),
+        ElevatedButton(
+          onPressed: () {
+            AuthController.to.signOut();
+          },
+          child: Text(
+            'settings.signOut'.tr,
+          ),
+        ),
       ],
     );
   }

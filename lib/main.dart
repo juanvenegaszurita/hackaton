@@ -8,7 +8,7 @@ import 'package:hackaton/constants/constants.dart';
 import 'package:hackaton/ui/ui.dart';
 import 'package:hackaton/helpers/helpers.dart';
 
-void main() async {
+Future<void> main() async {
   await Firebase.initializeApp();
   await GetStorage.init();
 

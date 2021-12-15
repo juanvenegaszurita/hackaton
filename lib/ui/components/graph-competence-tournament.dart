@@ -2,24 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:graphview/GraphView.dart';
 import 'package:hackaton/constants/constants.dart';
 import 'package:hackaton/controllers/private/tournament_dashboard_controller.dart';
-import 'package:hackaton/models/competence_model.dart';
 import 'package:hackaton/models/models.dart';
 import 'package:hackaton/ui/ui.dart';
 
 class GraphCompetenceTournament extends StatelessWidget {
-  GraphCompetenceTournament({required this.competencias});
+  GraphCompetenceTournament({
+    required this.controller,
+  });
 
-  final List<CompetenceModel> competencias;
+  final TournamentDashboardController controller;
   final Graph graph = Graph()..isTree = true;
   final BuchheimWalkerConfiguration builder = BuchheimWalkerConfiguration();
-  final TournamentDashboardController controller =
-      TournamentDashboardController.to;
 
   @override
   Widget build(BuildContext context) {
-    if (competencias.length == 0) return Text("Sin Datos");
+    if (controller.currentTournament.competencia.length == 0)
+      return Text("Sin Datos");
 
-    List<List<Node>> nodeTeams = competencias
+    List<List<Node>> nodeTeams = controller.currentTournament.competencia
         .map((competencia) => competencia.teams
             .map((team) => Node.Id("${competencia.id}-${team.id}"))
             .toList())
@@ -72,13 +72,19 @@ class GraphCompetenceTournament extends StatelessWidget {
             // I can decide what widget should be shown here based on the id
             var key = node.key!.value as String;
             List<String> keyList = key.split("-");
-            return rectangleWidget(
-              context,
-              competencias[int.parse(keyList[0])].etapa,
-              competencias[int.parse(keyList[0])].teams[int.parse(keyList[1])],
-              int.parse(keyList[0]),
-              int.parse(keyList[1]),
-            );
+            if (keyList.length > 0) {
+              return rectangleWidget(
+                context,
+                controller
+                    .currentTournament.competencia[int.parse(keyList[0])].etapa,
+                controller.currentTournament.competencia[int.parse(keyList[0])]
+                    .teams[int.parse(keyList[1])],
+                int.parse(keyList[0]),
+                int.parse(keyList[1]),
+              );
+            } else {
+              return Text("");
+            }
           },
         ),
       ),
@@ -99,7 +105,7 @@ class GraphCompetenceTournament extends StatelessWidget {
           ModalTeam.openDialog(
             controller,
             context,
-            competencias,
+            controller.currentTournament.competencia,
             etapa,
             team,
             indCom,

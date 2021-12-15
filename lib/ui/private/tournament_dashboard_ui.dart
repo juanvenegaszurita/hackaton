@@ -48,14 +48,8 @@ class TournamentDashboardUI extends StatelessWidget {
                     ),
                     child: TabBarView(
                       children: [
-                        GraphCompetenceTournament(
-                          competencias:
-                              controller.currentTournament.competencia,
-                        ),
-                        ListCompetenceTournament(
-                          competencias:
-                              controller.currentTournament.competencia,
-                        ),
+                        GraphCompetenceTournament(controller: controller),
+                        ListCompetenceTournament(controller: controller),
                       ],
                     ),
                   ),

@@ -24,7 +24,7 @@ class HomeController extends GetxController {
     tournamentService.streamFirestoreListParticipantes().listen(
       (event) {
         var stringList = List<String>.from(event);
-        listaParticipantes.addAll(stringList);
+        listaParticipantes.addAll(stringList.toSet().toList());
       },
     );
 
@@ -74,7 +74,6 @@ class HomeController extends GetxController {
 
         await tournamentService.updateListaParticipantes(pParticipantes);
         participantes.value.assignAll([]);
-        listaParticipantes.assignAll([]);
         nroEquipos.value = 0;
         update(["home"]);
         Get.to(

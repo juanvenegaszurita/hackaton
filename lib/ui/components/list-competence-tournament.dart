@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:hackaton/constants/constants.dart';
 import 'package:hackaton/controllers/private/tournament_dashboard_controller.dart';
-import 'package:hackaton/models/models.dart';
 import 'package:hackaton/ui/ui.dart';
 
 class ListCompetenceTournament extends StatelessWidget {
-  ListCompetenceTournament({required this.competencias});
-  final List<CompetenceModel> competencias;
-  final TournamentDashboardController controller =
-      TournamentDashboardController.to;
+  ListCompetenceTournament({
+    required this.controller,
+  });
+  final TournamentDashboardController controller;
 
   @override
   Widget build(BuildContext context) {
     List<Widget> lista = [];
 
-    competencias.asMap().forEach((indCom, competencia) {
+    controller.currentTournament.competencia
+        .asMap()
+        .forEach((indCom, competencia) {
       List<Widget> listaTMP = [];
       double alto = 0;
       competencia.teams.asMap().forEach((indTeam, team) {
@@ -29,7 +30,7 @@ class ListCompetenceTournament extends StatelessWidget {
                 ModalTeam.openDialog(
                   controller,
                   context,
-                  competencias,
+                  controller.currentTournament.competencia,
                   competencia.etapa,
                   team,
                   indCom,

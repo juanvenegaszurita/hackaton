@@ -148,6 +148,7 @@ class TournamentNewUI extends GetResponsiveView {
                     ],
                   ),
                   Container(
+                      margin: EdgeInsets.only(bottom: 8, top: 8),
                       height: screen.height - 380,
                       decoration: BoxDecoration(
                         border: Border.all(

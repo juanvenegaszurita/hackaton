@@ -13,11 +13,12 @@ class ViewerController extends GetxController {
     showLoadingIndicator();
     tournamentService.streamFirestoreListTournamentAll().listen(
       (event) {
+        tournamentList = [];
         event.forEach((elementTorneo) {
           elementTorneo.reference.snapshots().forEach(
             (elementDocTorneo) {
               elementDocTorneo.reference
-                  .collection("listaTorneo")
+                  .collection(TournamentService.listaTorneo)
                   .snapshots()
                   .forEach(
                 (listaTorneo) {
@@ -27,7 +28,6 @@ class ViewerController extends GetxController {
                       Map<String, dynamic> finalData = torneo.data();
                       finalData['id'] = torneo.id;
                       listaTorneos.add(TournamentModel.fromMap(finalData));
-                      update();
                     },
                   );
                   tournamentList.add(
@@ -36,13 +36,14 @@ class ViewerController extends GetxController {
                       listaTorneo: listaTorneos,
                     ),
                   );
+                  update();
                 },
               );
             },
           );
         });
       },
-    ); 
+    );
     super.onReady();
     hideLoadingIndicator();
   }

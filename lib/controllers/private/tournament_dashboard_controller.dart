@@ -110,35 +110,40 @@ class TournamentDashboardController extends GetxController {
   }
 
   TournamentModel? winTournament(
+    TournamentDashboardController controller,
     TeamsModel team,
     int indCom,
     int indTeam,
   ) {
-    setErrorDialog('');
-    if (nombreTeamController.text.isEmpty) {
-      setErrorDialog('Ingresar Nombre Teams');
+    controller.setErrorDialog('');
+    if (controller.nombreTeamController.text.isEmpty) {
+      controller.setErrorDialog('Ingresar Nombre Teams');
     } else if (team.participanteGanador.isNotEmpty) {
-      if (currentTournament.competencia.length > 0 &&
-          currentTournament.competencia[indCom].teams.length >
-              currentTournament.competencia[indCom + 1].teams.length) {
+      if (controller.currentTournament.competencia.length > 0 &&
+          controller.currentTournament.competencia[indCom].teams.length >
+              controller
+                  .currentTournament.competencia[indCom + 1].teams.length) {
         int intPerdedor = (indTeam % 2 == 0) ? indTeam + 1 : indTeam - 1;
 
         // debe estar activo el perdedor
-        if (currentTournament.competencia[indCom].teams[intPerdedor].estado ==
+        if (controller.currentTournament.competencia[indCom].teams[intPerdedor]
+                .estado ==
             TeamsModel.activo) {
           // ganador
-          currentTournament.competencia[indCom].teams[indTeam] = TeamsModel(
+          controller.currentTournament.competencia[indCom].teams[indTeam] =
+              TeamsModel(
             id: team.id,
-            nombre: nombreTeamController.text,
+            nombre: controller.nombreTeamController.text,
             participantes: team.participantes,
-            puntos: int.parse(puntosTeamController.text),
+            puntos: int.parse(controller.puntosTeamController.text),
             estado: TeamsModel.ganador,
             participanteGanador: team.participanteGanador,
           );
           // perdedor
-          TeamsModel teamPerdedor =
-              currentTournament.competencia[indCom].teams[intPerdedor];
-          currentTournament.competencia[indCom].teams[intPerdedor] = TeamsModel(
+          TeamsModel teamPerdedor = controller
+              .currentTournament.competencia[indCom].teams[intPerdedor];
+          controller.currentTournament.competencia[indCom].teams[intPerdedor] =
+              TeamsModel(
             id: teamPerdedor.id,
             nombre: teamPerdedor.nombre,
             participantes: teamPerdedor.participantes,
@@ -152,46 +157,52 @@ class TournamentDashboardController extends GetxController {
               : (indTeam % 2 == 0)
                   ? indTeam ~/ 2
                   : (indTeam - 1) ~/ 2;
-          int estadoWin = currentTournament.competencia.length == (indCom + 2)
-              ? TeamsModel.ganadorCompetencia
-              : TeamsModel.activo;
-          currentTournament.competencia[indCom + 1].teams[indNext] = TeamsModel(
+          int estadoWin =
+              controller.currentTournament.competencia.length == (indCom + 2)
+                  ? TeamsModel.ganadorCompetencia
+                  : TeamsModel.activo;
+          controller.currentTournament.competencia[indCom + 1].teams[indNext] =
+              TeamsModel(
             id: team.id,
-            nombre: nombreTeamController.text,
+            nombre: controller.nombreTeamController.text,
             participantes: team.participantes,
-            puntos: int.parse(puntosTeamController.text),
+            puntos: int.parse(controller.puntosTeamController.text),
             estado: estadoWin,
             participanteGanador: team.participanteGanador,
           );
-          return getTournamentWithoutCompetition(currentTournament.competencia);
+          return controller.getTournamentWithoutCompetition(
+              controller.currentTournament.competencia);
         } else {
-          setErrorDialog('tournamentDashboard.noCompetitor'.tr);
+          controller.setErrorDialog('tournamentDashboard.noCompetitor'.tr);
         }
       } else {
         // ganador
-        currentTournament.competencia[indCom].teams[indTeam] = TeamsModel(
+        controller.currentTournament.competencia[indCom].teams[indTeam] =
+            TeamsModel(
           id: team.id,
-          nombre: nombreTeamController.text,
+          nombre: controller.nombreTeamController.text,
           participantes: team.participantes,
-          puntos: int.parse(puntosTeamController.text),
+          puntos: int.parse(controller.puntosTeamController.text),
           estado: TeamsModel.ganador,
           participanteGanador: team.participanteGanador,
         );
         // traspaso ganador
-        currentTournament.competencia[indCom + 1].teams[indTeam] = TeamsModel(
+        controller.currentTournament.competencia[indCom + 1].teams[indTeam] =
+            TeamsModel(
           id: team.id,
-          nombre: nombreTeamController.text,
+          nombre: controller.nombreTeamController.text,
           participantes: [
             CompetitorModel(id: 1, nombre: team.participanteGanador)
           ],
-          puntos: int.parse(puntosTeamController.text),
+          puntos: int.parse(controller.puntosTeamController.text),
           estado: TeamsModel.activo,
           participanteGanador: team.participanteGanador,
         );
-        return getTournamentWithoutCompetition(currentTournament.competencia);
+        return controller.getTournamentWithoutCompetition(
+            controller.currentTournament.competencia);
       }
     } else {
-      setErrorDialog('tournamentDashboard.selectParticipant'.tr);
+      controller.setErrorDialog('tournamentDashboard.selectParticipant'.tr);
     }
   }
 }
