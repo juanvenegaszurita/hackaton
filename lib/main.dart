@@ -2,14 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 import 'package:hackaton/controllers/controllers.dart';
 import 'package:hackaton/constants/constants.dart';
 import 'package:hackaton/ui/ui.dart';
 import 'package:hackaton/helpers/helpers.dart';
 
-Future<void> main() async {
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  // If you're going to use other Firebase services in the background, such as Firestore,
+  // make sure you call `initializeApp` before using other Firebase services.
   await Firebase.initializeApp();
+  // print('Handling a background message ${message.messageId}');
+  if (message.notification != null) {
+    print(message.notification!.title);
+    print(message.notification!.body);
+  }
+}
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await GetStorage.init();
 
   Get.put<AuthController>(AuthController());
