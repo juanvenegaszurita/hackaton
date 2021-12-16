@@ -10,7 +10,7 @@ import 'package:hackaton/ui/components/components.dart';
 
 class TournamentNewUI extends GetResponsiveView {
   final AuthController authController = AuthController.to;
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  //final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget builder() {
@@ -19,7 +19,7 @@ class TournamentNewUI extends GetResponsiveView {
       id: "home",
       init: HomeController(),
       builder: (controller) => Form(
-        key: _formKey,
+        key: controller.formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.min,
@@ -176,7 +176,7 @@ class TournamentNewUI extends GetResponsiveView {
                           ),
                           child: IconButton(
                             onPressed: () {
-                              if (_formKey.currentState!.validate()) {
+                              if (controller.formKey.currentState!.validate()) {
                                 controller.addPlayer();
                               }
                             },

@@ -7,6 +7,8 @@ import 'package:hackaton/ui/private/private.dart';
 
 class HomeController extends GetxController {
   static HomeController to = Get.find();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   TextEditingController nombreParticipanteController = TextEditingController();
   final TournamentService tournamentService = TournamentService();
   final nroEquipos = 0.obs;
