@@ -37,21 +37,7 @@ class TournamentNewUI extends GetResponsiveView {
                     children: [
                       Text("Cantidad de Equipos ",
                           style: TextStyle(fontSize: 20)),
-                      Text(
-                        controller.currentnroEquipos.toString(),
-                        style: TextStyle(fontSize: 35, color: Colors.orange),
-                      ),
                     ],
-                  ),
-                  Slider(
-                    value: controller.currentnroEquipos.toDouble(),
-                    min: 0,
-                    max: 100,
-                    divisions: controller.currentDivision,
-                    label: controller.currentnroEquipos.round().toString(),
-                    onChanged: (double value) {
-                      controller.setNroEquipos(value.toInt());
-                    },
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -59,6 +45,62 @@ class TournamentNewUI extends GetResponsiveView {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
+                        margin: EdgeInsets.only(bottom: 8, top: 8),
+                        width: 180,
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                          alignment: Alignment.bottomCenter,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: AppThemes.orange),
+                            shape: BoxShape.circle,
+                          ),
+                          child: IconButton(
+                            onPressed: () {
+                              controller.removeEquipo();
+                            },
+                            icon: Icon(
+                              Icons.remove,
+                              color: AppThemes.orange,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(bottom: 8, top: 8),
+                        child: Text(
+                          controller.currentnroEquipos.toString(),
+                          style: TextStyle(fontSize: 35, color: Colors.orange),
+                        ),
+                      ),
+                      Container(
+                        width: 180,
+                        margin: EdgeInsets.only(bottom: 8, top: 8),
+                        child: Container(
+                          alignment: Alignment.bottomCenter,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: AppThemes.orange),
+                            shape: BoxShape.circle,
+                          ),
+                          child: IconButton(
+                            onPressed: () {
+                              controller.addEquipos();
+                            },
+                            icon: Icon(
+                              Icons.add,
+                              color: AppThemes.orange,
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(bottom: 8, top: 8),
                         width: screenWidth - 120,
                         child: Autocomplete(
                           optionsBuilder: (TextEditingValue textEditingValue) {

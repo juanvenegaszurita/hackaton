@@ -31,6 +31,28 @@ class HomeController extends GetxController {
     super.onReady();
   }
 
+  addEquipos() {
+    if (currentnroEquipos == 0) {
+      nroEquipos.value = 2;
+    } else if (currentnroEquipos == 2) {
+      nroEquipos.value += 2;
+    } else {
+      nroEquipos.value += 4;
+    }
+    update(["home"]);
+  }
+
+  removeEquipo() {
+    if (currentnroEquipos > 0) {
+      if ((currentnroEquipos == 4) || (currentnroEquipos == 2)) {
+        nroEquipos.value -= 2;
+      } else {
+        nroEquipos.value -= 4;
+      }
+    }
+    update(["home"]);
+  }
+
   addPlayer() {
     participantes.value.add(nombreParticipanteController.text);
     nombreParticipanteController.text = "";
@@ -85,15 +107,5 @@ class HomeController extends GetxController {
         );
       }
     }
-  }
-
-  setNroEquipos(int value) {
-    nroEquipos.value = value;
-    if (currentnroEquipos > 4) {
-      division.value = 25;
-    } else if (currentnroEquipos <= 4) {
-      division.value = 50;
-    }
-    update(["home"]);
   }
 }
