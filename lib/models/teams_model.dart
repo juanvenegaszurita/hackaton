@@ -54,7 +54,7 @@ class TeamsModel {
 
   Map<String, dynamic> toJson() => {
         "nombre": nombre,
-        "participantes": participantes.map((e) => e.nombre),
+        "participantes": participantes.map((e) => e.nombre).toList(),
         "puntos": puntos,
         "estado": estado,
         "participanteGanador": participanteGanador,

@@ -16,7 +16,7 @@ class TournamentListController extends GetxController {
     showLoadingIndicator();
     tournamentService.streamFirestoreListTournament().listen(
       (event) {
-        listTournament.value.addAll(event);
+        listTournament.value.assignAll(event);
         update();
       },
     );

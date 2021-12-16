@@ -45,7 +45,8 @@ class Localization extends Translations {
           'login.wrongPasswordNotice':
               'La contraseña no coincide con nuestros registros.',
           'login.unknownError': 'Error desconocido',
-          'login.textResponsability': 'Usuario BECH,\n\n usted creara una cuenta de administrador, podra crear torneos, participantes, entre otras caracterizticas. Usarla con responsabilidad.',
+          'login.textResponsability':
+              'Usuario BECH,\n\n usted creara una cuenta de administrador, podra crear torneos, participantes, entre otras caracterizticas. Usarla con responsabilidad.',
           /** validator */
           'validator.email':
               'Por favor, introduce una dirección de correo electrónico válida.',
@@ -66,7 +67,7 @@ class Localization extends Translations {
           'settings.system': 'Sistema',
           'settings.updateProfile': 'Actualización del perfil',
           /** home */
-          'home.title': 'Administración',
+          'home.title': 'Torneos',
           'home.namePlayer': 'Nombre Jugador',
           'home.createNewTournament': 'Crear Torneo',
           'home.newTournament': 'Nuevo Torneo',
@@ -120,7 +121,6 @@ class Localization extends Translations {
           'viewers.textTournamentDateTitle': 'Fecha de Torneo',
           'viewers.textTournamentGameTitle': 'Juego',
           'viewers.textTournamentNull': 'No hay Torneos disponibles'
-
         },
         'en': {
           /** login */
@@ -160,7 +160,8 @@ class Localization extends Translations {
           'login.wrongPasswordNoticeTitle': 'Login error',
           'login.wrongPasswordNotice':
               'The password does not match our records.',
-          'login.textResponsability': 'User BECH,\n\n you will create an administrator account, you can create tournaments, participants, among other characteristics. Use it responsibly.',
+          'login.textResponsability':
+              'User BECH,\n\n you will create an administrator account, you can create tournaments, participants, among other characteristics. Use it responsibly.',
           /** validator */
           'validator.email': 'Please enter a valid email address.',
           'validator.password': 'The password must be at least 6 characters.',
@@ -179,7 +180,7 @@ class Localization extends Translations {
           'settings.system': 'System',
           'settings.updateProfile': 'Profile update',
           /** home */
-          'home.title': 'Administration',
+          'home.title': 'Tournament',
           'home.namePlayer': 'Player Name',
           'home.createNewTournament': 'New Tournament',
           'home.newTournament': 'New Tournament',

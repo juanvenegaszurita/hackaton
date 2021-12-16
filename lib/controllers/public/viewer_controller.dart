@@ -10,41 +10,39 @@ class ViewerController extends GetxController {
 
   @override
   void onReady() async {
-    showLoadingIndicator();
-    tournamentService.streamFirestoreListTournamentAll().listen(
-      (event) {
-        tournamentList = [];
-        event.forEach((elementTorneo) {
-          elementTorneo.reference.snapshots().forEach(
-            (elementDocTorneo) {
-              elementDocTorneo.reference
-                  .collection(TournamentService.listaTorneo)
-                  .snapshots()
-                  .forEach(
-                (listaTorneo) {
-                  List<TournamentModel> listaTorneos = [];
-                  listaTorneo.docs.forEach(
-                    (torneo) {
-                      Map<String, dynamic> finalData = torneo.data();
-                      finalData['id'] = torneo.id;
-                      listaTorneos.add(TournamentModel.fromMap(finalData));
-                    },
-                  );
-                  tournamentList.add(
-                    TournamentListModel(
-                      id: elementTorneo.id,
-                      listaTorneo: listaTorneos,
-                    ),
-                  );
-                  update();
-                },
-              );
-            },
-          );
-        });
+    tournamentService.streamFirestoreOnlyTournament().snapshots().forEach(
+      (torneo) {
+        torneo.docs.forEach(
+          (docTorneo) {
+            List<TournamentModel> listaTorneos = [];
+            tournamentList = [];
+            docTorneo.reference
+                .collection(TournamentService.listaTorneo)
+                .snapshots()
+                .forEach(
+              (listaTorneo) {
+                listaTorneo.docs.forEach(
+                  (torneo) {
+                    Map<String, dynamic> finalData = torneo.data();
+                    finalData['id'] = torneo.id;
+                    listaTorneos.add(TournamentModel.fromMap(finalData));
+                    update();
+                  },
+                );
+              },
+            );
+            tournamentList.add(
+              TournamentListModel(
+                id: docTorneo.id,
+                listaTorneo: listaTorneos,
+              ),
+            );
+            update();
+          },
+        );
       },
     );
-    super.onReady();
     hideLoadingIndicator();
+    super.onReady();
   }
 }

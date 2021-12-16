@@ -79,6 +79,8 @@ class TournamentService {
               return event.docs.map((e) => e).toList();
             },
           );
+  CollectionReference<Map<String, dynamic>> streamFirestoreOnlyTournament() =>
+      _db.collection(torneos);
 
   Future<bool> updateTournament(
     String idTournament,
@@ -122,6 +124,11 @@ class TournamentService {
   ) async {
     showLoadingIndicator();
     try {
+      await _db
+          .collection(torneos)
+          .doc(authController.firebaseUser.value!.uid)
+          .set({"data": tournamentModel.fecha});
+
       DocumentReference<Map<String, dynamic>> newt = await _db
           .collection(torneos)
           .doc(authController.firebaseUser.value!.uid)
