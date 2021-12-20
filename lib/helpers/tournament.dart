@@ -23,9 +23,7 @@ class Tournament {
   }
 
   static TournamentModel createTourment(
-    List<String> listParticipantes,
-    int nroEquipos,
-  ) {
+      List<String> listParticipantes, int nroEquipos, String nombreTorneo) {
     int indTmpPart = 0;
     List<CompetenceModel> competencia = [];
     int etapa = 1;
@@ -97,7 +95,7 @@ class Tournament {
 
     return TournamentModel(
       id: "",
-      nombre: "Torneo 1",
+      nombre: nombreTorneo,
       fecha: Timestamp.now(),
       detalle: "",
       nombreJuego: "",

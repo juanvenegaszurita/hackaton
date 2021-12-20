@@ -80,6 +80,7 @@ class Localization extends Translations {
           'home.maxNumTeams':
               'La cantidad de equipos no puede ser superior al numero de jugadores.',
           'home.setError': 'Error',
+          'home.amountEquipment': 'Cantidad de Equipos',
           /** tournamentDashboard */
           'tournamentDashboard.title': 'Tablero de torneos',
           'tournamentDashboard.name': 'Nombre',
@@ -186,6 +187,14 @@ class Localization extends Translations {
           'home.newTournament': 'New Tournament',
           'home.listTour': 'Tournament List',
           'home.setPlayers': 'set Players',
+          'home.setMinimunPlayers':
+              'You must indicate at least a minimum of two (2) players.',
+          'home.setMinimunTeams':
+              'You must indicate at least a minimum of two (2) teams.',
+          'home.maxNumTeams':
+              'You must indicate at least a minimum of two (2) teams.',
+          'home.setError': 'Error',
+          'home.amountEquipment': 'Amount of equipment',
 
           /** tournamentDashboard */
           'tournamentDashboard.title': 'Tournament Dashboard',

@@ -29,24 +29,43 @@ class TournamentNewUI extends GetResponsiveView {
               child: Column(
                 children: [
                   GridResponsive(
+                    xs: 1,
+                    sm: 1,
+                    md: 1,
+                    lg: 1,
+                    xl: 1,
+                    children: [
+                      FormInputFieldWithIcon(
+                        controller: controller.nombreController,
+                        iconPrefix: Icons.app_registration,
+                        labelText: 'tournamentDashboard.name'.tr,
+                        validator: Validator().name,
+                        keyboardType: TextInputType.text,
+                        onChanged: (value) => null,
+                        onSaved: (value) =>
+                            controller.nombreController.text = value!,
+                      ),
+                    ],
+                  ),
+                  GridResponsive(
                     xs: 2,
                     sm: 2,
                     md: 2,
                     lg: 2,
                     xl: 2,
                     children: [
-                      Text("Cantidad de Equipos ",
+                      Text('home.amountEquipment'.tr,
                           style: TextStyle(fontSize: 20)),
                     ],
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
                         margin: EdgeInsets.only(bottom: 8, top: 8),
-                        width: 180,
+                        width: 150,
                         alignment: Alignment.bottomCenter,
                         child: Container(
                           alignment: Alignment.bottomCenter,
@@ -66,14 +85,18 @@ class TournamentNewUI extends GetResponsiveView {
                         ),
                       ),
                       Container(
+                        width: screenWidth - 350,
                         margin: EdgeInsets.only(bottom: 8, top: 8),
-                        child: Text(
-                          controller.currentnroEquipos.toString(),
-                          style: TextStyle(fontSize: 35, color: Colors.orange),
+                        child: Center(
+                          child: Text(
+                            controller.currentnroEquipos.toString(),
+                            style:
+                                TextStyle(fontSize: 35, color: Colors.orange),
+                          ),
                         ),
                       ),
                       Container(
-                        width: 180,
+                        width: 150,
                         margin: EdgeInsets.only(bottom: 8, top: 8),
                         child: Container(
                           alignment: Alignment.bottomCenter,
@@ -191,7 +214,7 @@ class TournamentNewUI extends GetResponsiveView {
                   ),
                   Container(
                       margin: EdgeInsets.only(bottom: 8, top: 8),
-                      height: screen.height - 380,
+                      height: screen.height - 470,
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: Theme.of(Get.context!)

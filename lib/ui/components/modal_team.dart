@@ -130,13 +130,7 @@ class ModalTeam {
     int indCom,
     int indTeam,
   ) {
-    if (competencias.length == (indCom + 1)) {
-      ModalTeam.dialog(
-        context: context,
-        title: etapa,
-        content: Text("${'tournamentDashboard.winner'.tr}!"),
-      );
-    } else if (team.estado == TeamsModel.activo) {
+    if (team.estado == TeamsModel.activo) {
       controller.nombreTeamController.text = team.nombre;
       controller.puntosTeamController.text = team.puntos.toString();
       controller.setErrorDialog('');
@@ -255,6 +249,23 @@ class ModalTeam {
         },
       );
       controller.updateDialogParticipante();
+      //} else if (competencias.length == (indCom + 1)) {
+    } else if (team.estado == TeamsModel.ganadorCompetencia) {
+      print(team);
+      ModalTeam.dialog(
+        context: context,
+        title: etapa,
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              'assets/images/win.png',
+            ),
+            Text(team.participanteGanador),
+            Text("${'tournamentDashboard.winner'.tr}!"),
+          ],
+        ),
+      );
     } else {
       ModalTeam.dialog(
         context: context,

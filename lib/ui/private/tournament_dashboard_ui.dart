@@ -87,7 +87,7 @@ class TournamentDashboardUI extends StatelessWidget {
               controller: controller.nombreController,
               iconPrefix: Icons.app_registration,
               labelText: 'tournamentDashboard.name'.tr,
-              validator: Validator().notEmpty,
+              validator: Validator().name,
               keyboardType: TextInputType.text,
               onChanged: (value) => null,
               onSaved: (value) => controller.nombreController.text = value!,
@@ -97,7 +97,7 @@ class TournamentDashboardUI extends StatelessWidget {
               controller: controller.nombreJuegoController,
               iconPrefix: Icons.gamepad_outlined,
               labelText: 'tournamentDashboard.gameName'.tr,
-              validator: Validator().notEmpty,
+              validator: Validator().name,
               keyboardType: TextInputType.text,
               onChanged: (value) => null,
               onSaved: (value) =>

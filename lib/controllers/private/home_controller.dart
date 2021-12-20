@@ -9,6 +9,7 @@ class HomeController extends GetxController {
   static HomeController to = Get.find();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+  TextEditingController nombreController = TextEditingController();
   TextEditingController nombreParticipanteController = TextEditingController();
   final TournamentService tournamentService = TournamentService();
   final nroEquipos = 0.obs;
@@ -19,14 +20,14 @@ class HomeController extends GetxController {
   final participantes = RxList<String>([]).obs;
   List<String> get currentParticipantes => participantes.value;
 
-  final List<String> listaParticipantes = [];
+  List<String> listaParticipantes = [];
 
   @override
   void onReady() async {
     tournamentService.streamFirestoreListParticipantes().listen(
       (event) {
         var stringList = List<String>.from(event);
-        listaParticipantes.addAll(stringList.toSet().toList());
+        listaParticipantes = stringList.toSet().toList();
       },
     );
 
@@ -88,10 +89,8 @@ class HomeController extends GetxController {
     } else {
       {
         String idTournamet = await tournamentService.newTournament(
-          Tournament.createTourment(
-            currentParticipantes,
-            currentnroEquipos.toInt(),
-          ),
+          Tournament.createTourment(currentParticipantes,
+              currentnroEquipos.toInt(), nombreController.text),
         );
         List<String> pParticipantes =
             [...listaParticipantes, ...currentParticipantes].toSet().toList();
@@ -99,6 +98,7 @@ class HomeController extends GetxController {
         await tournamentService.updateListaParticipantes(pParticipantes);
         participantes.value.assignAll([]);
         nroEquipos.value = 0;
+        nombreController.text = "";
         update(["home"]);
         Get.to(
           TournamentDashboardUI(),

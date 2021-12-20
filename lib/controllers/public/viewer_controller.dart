@@ -15,7 +15,6 @@ class ViewerController extends GetxController {
         torneo.docs.forEach(
           (docTorneo) {
             List<TournamentModel> listaTorneos = [];
-            tournamentList = [];
             docTorneo.reference
                 .collection(TournamentService.listaTorneo)
                 .snapshots()
@@ -25,18 +24,40 @@ class ViewerController extends GetxController {
                   (torneo) {
                     Map<String, dynamic> finalData = torneo.data();
                     finalData['id'] = torneo.id;
-                    listaTorneos.add(TournamentModel.fromMap(finalData));
+
+                    bool existe = false;
+                    for (int i = 0; i < listaTorneos.length; i++) {
+                      if (listaTorneos[i].id == torneo.id) {
+                        listaTorneos[i] = TournamentModel.fromMap(finalData);
+                        existe = true;
+                      }
+                    }
+                    if (!existe)
+                      listaTorneos.add(TournamentModel.fromMap(finalData));
                     update();
                   },
                 );
               },
             );
-            tournamentList.add(
-              TournamentListModel(
-                id: docTorneo.id,
-                listaTorneo: listaTorneos,
-              ),
-            );
+            bool existe = false;
+            for (int i = 0; i < tournamentList.length; i++) {
+              if (tournamentList[i].id == docTorneo.id) {
+                tournamentList[i] = TournamentListModel(
+                  id: docTorneo.id,
+                  listaTorneo: listaTorneos,
+                );
+                existe = true;
+                break;
+              }
+            }
+            if (!existe) {
+              tournamentList.add(
+                TournamentListModel(
+                  id: docTorneo.id,
+                  listaTorneo: listaTorneos,
+                ),
+              );
+            }
             update();
           },
         );
