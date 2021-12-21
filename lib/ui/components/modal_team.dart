@@ -258,8 +258,12 @@ class ModalTeam {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset(
-              'assets/images/win.png',
+            Container(
+              width: 200,
+              height: 300,
+              child: Image.asset(
+                'assets/images/win.png',
+              ),
             ),
             Text(team.participanteGanador),
             Text("${'tournamentDashboard.winner'.tr}!"),
